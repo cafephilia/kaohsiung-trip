@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>가오슝 항공·호텔 후보</title>
+<meta name="description" content="2026.12.10–12.13 가오슝 3박 4일 (남자 2명, 트윈) 항공·호텔 후보와 견적 비교">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  :root {
+    --bg: #f6f5f1;
+    --surface: #ffffff;
+    --surface-2: #f0eee8;
+    --text: #1d1d1b;
+    --muted: #66645e;
+    --line: #e2dfd7;
+    --accent: #c2410c;
+    --accent-soft: #fde7da;
+    --good: #15803d;
+    --good-soft: #dcfce7;
+    --warn: #b45309;
+    --warn-soft: #fef3c7;
+    --bad: #b91c1c;
+    --bad-soft: #fee2e2;
+    --info: #1d4ed8;
+    --info-soft: #dbeafe;
+    --station: #7c3aed;
+    --radius: 14px;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141413;
+      --surface: #1e1e1c;
+      --surface-2: #272724;
+      --text: #ecebe6;
+      --muted: #a3a19a;
+      --line: #34332f;
+      --accent: #fb923c;
+      --accent-soft: #3b2416;
+      --good: #4ade80;
+      --good-soft: #14301f;
+      --warn: #fbbf24;
+      --warn-soft: #362a10;
+      --bad: #f87171;
+      --bad-soft: #3a1717;
+      --info: #93c5fd;
+      --info-soft: #172a4a;
+      --station: #c4b5fd;
+      --shadow: none;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141413; --surface: #1e1e1c; --surface-2: #272724; --text: #ecebe6; --muted: #a3a19a; --line: #34332f;
+    --accent: #fb923c; --accent-soft: #3b2416; --good: #4ade80; --good-soft: #14301f; --warn: #fbbf24; --warn-soft: #362a10;
+    --bad: #f87171; --bad-soft: #3a1717; --info: #93c5fd; --info-soft: #172a4a; --station: #c4b5fd; --shadow: none;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans KR", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  a { color: var(--accent); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+
+  header.hero { padding-top: 40px; padding-bottom: 24px; }
+  .eyebrow { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: .04em; }
+  h1 { font-size: clamp(26px, 5vw, 36px); line-height: 1.25; margin: 6px 0 12px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 999px; font-size: 13px;
+    background: var(--surface); border: 1px solid var(--line); color: var(--muted);
+  }
+  .note { font-size: 13px; color: var(--muted); margin-top: 12px; }
+
+  nav.toc {
+    position: sticky; top: 0; z-index: 1000;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.toc .wrap { display: flex; gap: 4px; overflow-x: auto; padding-top: 8px; padding-bottom: 8px; scrollbar-width: none; }
+  nav.toc a {
+    flex: none; text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500;
+    padding: 6px 12px; border-radius: 999px;
+  }
+  nav.toc a:hover { background: var(--surface-2); color: var(--text); }
+
+  section { padding: 32px 0 8px; scroll-margin-top: 56px; }
+  h2 { font-size: 22px; margin: 0 0 4px; }
+  .lead { color: var(--muted); margin: 0 0 16px; }
+  h3 { font-size: 17px; margin: 0; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 20px;
+  }
+  .pick { border: 2px solid var(--accent); }
+  .pick .tag { background: var(--accent); color: #fff; }
+  .tag {
+    display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 6px;
+    background: var(--surface-2); color: var(--muted);
+  }
+  .tag.good { background: var(--good-soft); color: var(--good); }
+  .tag.warn { background: var(--warn-soft); color: var(--warn); }
+  .tag.bad { background: var(--bad-soft); color: var(--bad); }
+  .tag.info { background: var(--info-soft); color: var(--info); }
+
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+  .summary-grid .card h3 { margin: 8px 0 6px; }
+  .big { font-size: 26px; font-weight: 700; line-height: 1.2; }
+  .big small { font-size: 14px; font-weight: 500; color: var(--muted); }
+  ul.tight { margin: 8px 0 0; padding-left: 18px; }
+  ul.tight li { margin: 2px 0; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 14px; }
+  #flights table { min-width: 720px; }
+  #flights td:last-child { min-width: 200px; }
+  #flights td:first-child { white-space: nowrap; }
+  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: var(--surface-2); font-weight: 700; white-space: nowrap; font-size: 13px; color: var(--muted); }
+  tr:last-child td { border-bottom: 0; }
+  td.num, th.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  tr.hl td { background: var(--accent-soft); }
+  .time { font-weight: 700; white-space: nowrap; }
+  .sub { display: block; font-size: 12px; color: var(--muted); }
+
+  .callout {
+    border-radius: var(--radius); padding: 12px 16px; margin: 12px 0;
+    background: var(--warn-soft); color: var(--text); font-size: 14px;
+  }
+  .callout.info { background: var(--info-soft); }
+  .callout b { color: inherit; }
+
+  #map {
+    height: 460px; border-radius: var(--radius); border: 1px solid var(--line);
+    background: var(--surface-2); z-index: 0;
+  }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin: 10px 0 0; font-size: 13px; color: var(--muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.2); }
+
+  .pin {
+    width: 28px; height: 28px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+    display: grid; place-items: center; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.35);
+  }
+  .pin b { transform: rotate(45deg); color: #fff; font: 700 13px/1 "Noto Sans KR", sans-serif; }
+  .pin.twin { background: #15803d; }
+  .pin.quad { background: #2563eb; }
+  .pin.notwin { background: #78716c; }
+  .pin.station { background: #7c3aed; border-radius: 8px; transform: none; width: 30px; height: 30px; }
+  .pin.station b { transform: none; font-size: 15px; }
+  .pin.poi { background: #c2410c; border-radius: 8px; transform: none; }
+  .pin.poi b { transform: none; }
+  .leaflet-popup-content { font-family: "Noto Sans KR", sans-serif; font-size: 13px; line-height: 1.5; }
+  .leaflet-popup-content b { font-size: 14px; }
+
+  .hotels { display: grid; gap: 14px; }
+  .hotel { display: grid; gap: 10px; }
+  .hotel-head { display: flex; gap: 12px; align-items: flex-start; }
+  .num-badge {
+    flex: none; width: 32px; height: 32px; border-radius: 50%; color: #fff; font-weight: 700;
+    display: grid; place-items: center; font-size: 15px;
+  }
+  .hotel-title { flex: 1; min-width: 0; }
+  .hotel-title .en { color: var(--muted); font-size: 13px; }
+  .hotel-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+  .fact { background: var(--surface-2); border-radius: 10px; padding: 8px 12px; }
+  .fact .k { font-size: 12px; color: var(--muted); }
+  .fact .v { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .proscons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 14px; }
+  .proscons h4 { margin: 0 0 4px; font-size: 13px; }
+  .proscons .pro h4 { color: var(--good); }
+  .proscons .con h4 { color: var(--bad); }
+  .proscons ul { margin: 0; padding-left: 18px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: 8px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--text);
+    text-decoration: none; cursor: pointer; font: inherit; font-size: 13px;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .addr { font-size: 13px; color: var(--muted); }
+
+  .others td:first-child { white-space: nowrap; }
+
+  footer { padding-top: 40px; padding-bottom: 56px; color: var(--muted); font-size: 13px; }
+  footer ul { padding-left: 18px; }
+
+  @media (max-width: 640px) {
+    body { font-size: 14px; }
+    .card { padding: 16px; }
+    .proscons { grid-template-columns: 1fr; }
+    #map { height: 380px; }
+    th, td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <div class="eyebrow">KAOHSIUNG · 高雄</div>
+  <h1>가오슝 3박 4일<br>항공·호텔 후보 정리</h1>
+  <div class="meta">
+    <span class="chip">📅 2026.12.10 (목) – 12.13 (일)</span>
+    <span class="chip">👬 성인 2명 · 트윈 선호</span>
+    <span class="chip">📍 숙소: 메이리다오역(美麗島) 근처</span>
+  </div>
+  <p class="note">가격은 2026년 10월 26일에 구글 항공편과 트립닷컴에서 이 날짜로 직접 조회한 값입니다. 세금이 포함되어 있고, 예약 시점에 따라 달라질 수 있습니다.</p>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#summary">요약</a>
+    <a href="#flights">항공</a>
+    <a href="#map-section">지도</a>
+    <a href="#hotels">호텔</a>
+    <a href="#bundle">묶음 할인</a>
+    <a href="#total">총 견적</a>
+    <a href="#tips">체크리스트</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- 요약 -->
+  <section id="summary">
+    <h2>한눈에 보기</h2>
+    <p class="lead">점심쯤 출발해서 마지막 날 이른 오후에 돌아오는 조건 기준입니다.</p>
+    <div class="summary-grid">
+      <div class="card pick">
+        <span class="tag">추천</span>
+        <h3>따로 예약: 김포 11:00 출발 + 후 하우스 트윈</h3>
+        <div class="big">약 65만 원 <small>/ 1인</small></div>
+        <ul class="tight">
+          <li>2인 총액 <b>₩1,298,340</b></li>
+          <li>첫날 13:15 도착이라 오후부터 일정 시작</li>
+          <li>호텔은 12/8까지 무료 취소</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag good">조식 포함</span>
+        <h3>따로 예약: 김포 11:00 출발 + 더 클라우드 트윈</h3>
+        <div class="big">약 66만 원 <small>/ 1인</small></div>
+        <ul class="tight">
+          <li>2인 총액 <b>₩1,315,139</b></li>
+          <li>2인 조식 포함, 12/6까지 무료 취소</li>
+          <li>객실은 16~17㎡로 작은 편</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag info">최저가</span>
+        <h3>트립닷컴 묶음: 김포 20:35 출발 + 로얄 파인</h3>
+        <div class="big">약 54만 원 <small>/ 1인</small></div>
+        <ul class="tight">
+          <li>2인 총액 <b>₩1,070,100</b> (더블룸 기준)</li>
+          <li>첫날 22:40 도착이라 첫날 일정은 사실상 없음</li>
+          <li>호텔이 역에서 1km로 가장 멂</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 항공 -->
+  <section id="flights">
+    <h2>✈️ 항공편</h2>
+    <p class="lead">1인 왕복 가격(세금 포함)입니다. 구글 항공편 기준이에요.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>안</th>
+            <th>가는 편 · 12/10 (목)</th>
+            <th>오는 편 · 12/13 (일)</th>
+            <th class="num">1인 왕복</th>
+            <th>메모</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hl">
+            <td><b>A</b><span class="sub">추천</span></td>
+            <td><span class="time">김포 11:00 → 13:15</span><span class="sub">제주항공 · 3시간 15분</span></td>
+            <td><span class="time">가오슝 14:05 → 김포 17:55</span><span class="sub">트리니티항공 · 2시간 50분</span></td>
+            <td class="num"><b>₩519,648</b></td>
+            <td>시간 조건에 가장 잘 맞고 가장 쌈. <b>가는 편과 오는 편 항공권을 따로 구매</b></td>
+          </tr>
+          <tr>
+            <td><b>B</b></td>
+            <td><span class="time">인천 13:25 → 15:55</span><span class="sub">트리니티항공 · 3시간 30분</span></td>
+            <td><span class="time">가오슝 07:05 → 인천 10:55</span><span class="sub">중화항공 · 2시간 50분</span></td>
+            <td class="num">₩541,581</td>
+            <td>귀국편이 아침 7시 출발이라 마지막 날을 못 씀</td>
+          </tr>
+          <tr>
+            <td><b>C</b></td>
+            <td><span class="time">김포 12:00 → 14:10</span><span class="sub">중화항공 · 3시간 10분</span></td>
+            <td><span class="time">가오슝 14:05 → 김포 17:55</span><span class="sub">트리니티항공</span></td>
+            <td class="num">₩584,748</td>
+            <td>가는 편이 대형 항공사(수하물 포함). 따로 구매</td>
+          </tr>
+          <tr>
+            <td><b>D</b></td>
+            <td><span class="time">인천 13:25 → 15:55</span><span class="sub">트리니티항공</span></td>
+            <td><span class="time">가오슝 17:00 → 인천 20:45</span><span class="sub">트리니티항공</span></td>
+            <td class="num">₩535,048</td>
+            <td>한 항공사 왕복. 귀국이 저녁이라 늦음</td>
+          </tr>
+          <tr>
+            <td><b>E</b><span class="sub">묶음 기본</span></td>
+            <td><span class="time">김포 20:35 → 22:40</span><span class="sub">타이거항공 · 수하물 불포함</span></td>
+            <td><span class="time">가오슝 14:05 → 김포 17:55</span><span class="sub">트리니티항공 · 15kg</span></td>
+            <td class="num">—</td>
+            <td>트립닷컴 항공+호텔 묶음에 기본으로 잡히는 항공편</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <b>⚠️ 주의</b>
+      <ul class="tight">
+        <li>A와 C는 항공사가 달라 <b>항공권 2장을 따로 사는</b> 방식입니다. 한쪽이 지연되거나 결항돼도 다른 편은 보호받지 못합니다.</li>
+        <li>제주항공·트리니티·타이거는 저가항공이라 <b>위탁 수하물 포함 운임인지 꼭 확인</b>하세요.</li>
+        <li>트리니티항공은 구글 항공편에 표시된 이름이고, 편명 TW를 쓰는 티웨이항공 계열입니다.</li>
+        <li>하루 당긴 12/9–12/12는 1인 약 ₩364,540 운임도 있었습니다(항공편 시간은 미확인).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 지도 -->
+  <section id="map-section">
+    <h2>🗺️ 호텔 위치</h2>
+    <p class="lead">번호는 아래 호텔 카드 번호와 같습니다. 핀을 누르면 요약이 보여요.</p>
+    <div id="map" role="region" aria-label="메이리다오역 주변 호텔 지도"></div>
+    <div class="legend">
+      <span><i class="dot" style="background:#15803d"></i>트윈룸 있음</span>
+      <span><i class="dot" style="background:#2563eb"></i>침대 2개(더블 2) 객실</span>
+      <span><i class="dot" style="background:#78716c"></i>이 날짜에 트윈 없음·미확인</span>
+      <span><i class="dot" style="background:#7c3aed"></i>메이리다오역 (MRT 레드·오렌지 환승)</span>
+      <span><i class="dot" style="background:#c2410c"></i>류허 야시장</span>
+    </div>
+    <div class="callout info">
+      <b>🚇 공항 → 숙소</b>: 가오슝 공항역(R4)에서 MRT 레드라인을 타고 메이리다오역(R10)에서 내리면 됩니다. 환승 없이 약 20분이에요.
+    </div>
+  </section>
+
+  <!-- 호텔 -->
+  <section id="hotels">
+    <h2>🏨 호텔 후보</h2>
+    <p class="lead">가격은 트립닷컴 12/10–13 <b>3박 총액</b>(객실 1개, 성인 2명, 세금 포함)입니다. 장단점은 트립닷컴 투숙객 리뷰를 요약했어요.</p>
+    <div class="hotels" id="hotel-list"></div>
+  </section>
+
+  <section id="others">
+    <h3 style="margin-bottom:8px">기타 주변 호텔 <span class="tag">트윈 여부 미확인</span></h3>
+    <div class="table-wrap others">
+      <table>
+        <thead>
+          <tr><th>#</th><th>호텔</th><th>역까지</th><th>평점</th><th>기본 객실</th><th class="num">3박 총액</th><th>비고</th></tr>
+        </thead>
+        <tbody id="others-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 묶음 -->
+  <section id="bundle">
+    <h2>🎁 트립닷컴 항공+호텔 묶음</h2>
+    <p class="lead">1인당 가격입니다. 항공편은 <b>E안(김포 20:35 출발)</b>, 객실은 더블룸 기준입니다.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>호텔</th><th class="num">따로 예약 (트립닷컴)</th><th class="num">묶음</th><th class="num">2인 묶음 총액</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>⑤ 로얄 파인 호텔</td><td class="num">₩582,127</td><td class="num"><b>₩535,050</b></td><td class="num">₩1,070,100</td></tr>
+          <tr><td>⑥ FX 호텔 중화로점</td><td class="num">₩582,776</td><td class="num"><b>₩551,750</b></td><td class="num">₩1,103,500</td></tr>
+          <tr><td>① 후 하우스</td><td class="num">₩691,352</td><td class="num"><b>₩562,950</b></td><td class="num">₩1,125,900</td></tr>
+          <tr><td>② 더 클라우드 호텔</td><td class="num">₩667,818</td><td class="num"><b>₩567,000</b></td><td class="num">₩1,134,000</td></tr>
+          <tr><td>⑦ 카인드네스 종젱</td><td class="num">—</td><td class="num"><b>₩585,250</b></td><td class="num">₩1,170,500</td></tr>
+          <tr><td>⑧ 호텔 라인 (La Inn)</td><td class="num">—</td><td class="num"><b>₩616,500</b></td><td class="num">₩1,233,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <ul class="tight" style="margin-top:0">
+        <li>같은 호텔이면 묶음이 <b>1인 약 5만 원(2인 약 10만 원)</b> 쌉니다. 대신 기본 항공편이 저녁 출발이라 첫날 일정을 잃어요.</li>
+        <li>묶음 화면에서 항공편을 A안(김포 11:00)으로 바꾼 가격은 <b>확인하지 못했어요</b>. '더 많은 항공편 보기'가 로딩에서 멈췄어요. 직접 바꿔서 <b>1인 60만 원 아래</b>가 나오면 묶음이 이득입니다.</li>
+        <li>묶음은 '객실 유형 변경'에서 트윈으로 바꿔야 하고, 바꾸면 가격이 조금 오를 수 있어요.</li>
+        <li>트립닷컴 신규회원 호텔 할인코드(최대 ₩13,000)와 카드사 제휴 코드를 같이 쓸 수 있는지도 확인해 보세요.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 총 견적 -->
+  <section id="total">
+    <h2>💰 2인 총 견적 비교</h2>
+    <p class="lead">따로 예약하는 경우는 A안 항공(1인 ₩519,648 × 2 = ₩1,039,296)에 호텔 3박 총액을 더했어요.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>구성</th><th>첫날</th><th class="num">2인 총액</th><th class="num">1인당</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hl"><td><b>A + ① 후 하우스 트윈</b></td><td>13:15 도착</td><td class="num"><b>₩1,298,340</b></td><td class="num">₩649,170</td></tr>
+          <tr><td>A + ② 더 클라우드 트윈 (조식 포함)</td><td>13:15 도착</td><td class="num">₩1,315,139</td><td class="num">₩657,570</td></tr>
+          <tr><td>A + ⑤ 로얄 파인 트윈 (환불 불가)</td><td>13:15 도착</td><td class="num">₩1,241,167</td><td class="num">₩620,584</td></tr>
+          <tr><td>A + ③ Sleepie 4인룸 (더블 2개)</td><td>13:15 도착</td><td class="num">₩1,351,421</td><td class="num">₩675,711</td></tr>
+          <tr><td>묶음(E) + ① 후 하우스</td><td>22:40 도착</td><td class="num">₩1,125,900</td><td class="num">₩562,950</td></tr>
+          <tr><td>묶음(E) + ⑤ 로얄 파인</td><td>22:40 도착</td><td class="num">₩1,070,100</td><td class="num">₩535,050</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 체크리스트 -->
+  <section id="tips">
+    <h2>✅ 예약 전 체크리스트</h2>
+    <div class="card">
+      <ul class="tight" style="margin-top:0">
+        <li><b>트윈룸 재고가 적어요.</b> 후 하우스·더 클라우드·로얄 파인 모두 조회 시점에 "1~5개 남음"으로 표시됐어요.</li>
+        <li>금·토요일 밤이 끼어 있어 주말 요금이 적용돼요. 무료 취소 객실로 먼저 잡아 두면 안전해요.</li>
+        <li>저가항공은 위탁 수하물(15kg 등) 포함 여부와 기내 수하물 무게 제한을 확인하세요.</li>
+        <li>항공권 2장을 따로 사면 결항 시 연결 보호가 안 돼요. 여행자보험의 항공기 지연 보장을 확인하세요.</li>
+        <li>입국 전 대만 온라인 입국신고서를 작성하세요. 한국 여권은 90일 무비자예요.</li>
+        <li>콘센트는 110V, 11자형(A타입)이라 <b>돼지코 어댑터</b>가 필요해요.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <b>출처</b>
+  <ul>
+    <li>항공: Google 항공편 (서울 ↔ 가오슝, 2026-12-10 ~ 12-13, 성인 1명 기준 왕복가)</li>
+    <li>호텔·묶음: 트립닷컴 (kr.trip.com) 호텔 상세와 항공+호텔 검색, 성인 2명·객실 1개</li>
+    <li>위치 좌표: 트립닷컴 호텔 정보 · 지도 © OpenStreetMap contributors</li>
+  </ul>
+  조회일 2026-10-26. 가격과 잔여 객실은 수시로 바뀝니다.
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  const won = (n) => '₩' + n.toLocaleString('ko-KR');
+  const tripUrl = (id) => `https://kr.trip.com/hotels/detail/?hotelId=${id}&checkIn=2026-12-10&checkOut=2026-12-13&adult=2&crn=1&curr=KRW`;
+  const gmapUrl = (lat, lng) => `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+
+  const STATION = { name: '메이리다오역 (美麗島)', lat: 22.6313887, lng: 120.3019131 };
+  const LIUHE = { name: '류허 야시장 (六合夜市)', lat: 22.6328, lng: 120.2992 };
+
+  // kind: twin | quad | notwin
+  const HOTELS = [
+    {
+      no: 1, kind: 'twin', pick: true, id: 907030,
+      name: '후 하우스', en: 'Kaohsiung Hù House', open: 2012, star: 4,
+      lat: 22.634508, lng: 120.301453, walk: '350m',
+      addr: 'No.11, Qixian 2nd Rd, Sinsing District, Kaohsiung',
+      score: 8.1, reviews: '1,862',
+      room: '스탠다드 트윈 · 싱글침대 2개 · 23㎡', total: 259044,
+      breakfast: '선택 (1인 ₩11,177)', cancel: '12/8 12:00까지 무료',
+      tags: [['good', '트윈 있음'], ['good', '무료 취소'], ['', '23㎡ 넓은 편']],
+      pros: ['트윈 객실이 주변 호텔보다 넓어 쾌적하다는 평', '메이리다오역 도보 5분, 류허 야시장 가까움', '체크아웃 후 짐 보관 가능, 앞에 마트'],
+      cons: ['외관과 복도 카펫이 낡았다는 평', '일부 객실 담배 냄새·청소 불만 리뷰', '조식은 평이 갈림'],
+    },
+    {
+      no: 2, kind: 'twin', id: 1204983,
+      name: '더 클라우드 호텔', en: 'The Cloud Hotel', open: 2013, star: 2,
+      lat: 22.633242, lng: 120.300116, walk: '360m',
+      addr: 'No.18 Minzhu Road, Sinsing District, Kaohsiung',
+      score: 8.8, reviews: '477',
+      room: '트윈룸 · 싱글침대 2개 · 16~17㎡', total: 275843,
+      breakfast: '✅ 2인 포함', cancel: '12/6 23:59까지 무료',
+      tags: [['good', '트윈 있음'], ['good', '조식 포함'], ['good', '무료 취소'], ['warn', '1개 남음']],
+      pros: ['역·야시장·드럭스토어가 가까워 위치가 가장 좋다는 평', '침대가 편하다는 리뷰', '친구끼리 잠만 자기엔 충분'],
+      cons: ['객실이 작고 답답하다는 평', '조식 메뉴가 단출하다는 의견', '내부 공사 중이었다는 최근 리뷰'],
+    },
+    {
+      no: 3, kind: 'quad', id: 131818636,
+      name: 'Sleepie Design Hotel', en: 'Sleepie Design Hotel', open: 2025, star: 2,
+      lat: 22.631094, lng: 120.298933, walk: '340m',
+      addr: 'No.72, Zhongzheng 4th Road, Sinsing District, Kaohsiung',
+      score: 8.5, reviews: '178',
+      room: '스탠다드 4인룸 · 더블침대 2개 · 20㎡ · 욕조', total: 312125,
+      breakfast: '없음', cancel: '12/3 23:59까지 무료',
+      tags: [['info', '더블침대 2개'], ['good', '2025년 신축'], ['good', '무료 취소'], ['warn', '1개 남음']],
+      pros: ['2025년 신축이라 깨끗함', '주변 숙소보다 방과 욕실이 넓다는 평', '역·야시장 모두 도보권'],
+      cons: ['트윈은 없음. 침대 2개 방은 4인룸이라 가격이 높음', '조식 없음', '리뷰 수가 아직 적음'],
+    },
+    {
+      no: 4, kind: 'notwin', id: 131650334,
+      name: '레트로 가오슝', en: 'Retro Kaohsiung', open: 2025, star: 3,
+      lat: 22.628556, lng: 120.300138, walk: '370m',
+      addr: 'No. 205, Datong Road, Sinsing District, Kaohsiung',
+      score: 8.6, reviews: '340',
+      room: '슈페리어 더블 · 퀸침대 1개 · 23㎡', total: 223263,
+      breakfast: '없음', cancel: '환불 불가',
+      tags: [['bad', '이 날짜 트윈 없음'], ['good', '2025년 신축']],
+      pros: ['신축이고 방이 넓음, 로비 무료 커피·간식', '한국어 응대 가능한 직원', '역·야시장 도보권'],
+      cons: ['12/10–13에는 더블룸만 남음', '와이파이·온도 조절 불만 일부'],
+    },
+    {
+      no: 5, kind: 'twin', id: 98052422,
+      name: '로얄 파인 호텔', en: 'Royal Fine Hotel', open: 2022, star: 4,
+      lat: 22.632222, lng: 120.29374, walk: '1km',
+      addr: 'No. 207, Qixian 2nd Rd, Qianjin District, Kaohsiung',
+      score: 8.7, reviews: '2,243',
+      room: '스탠다드 트윈 · 싱글침대 2개 · 16㎡', total: 201871,
+      breakfast: '없음', cancel: '❌ 환불 불가',
+      tags: [['good', '트윈 있음'], ['info', '트윈 최저가'], ['bad', '환불 불가']],
+      pros: ['트윈 중 가장 저렴', '직원이 친절하고 영어 응대 가능', '주변에 유명 식당, 2층에 세탁·건조기'],
+      cons: ['역에서 1km로 다소 멂', '방이 좁아 큰 캐리어를 펴기 어려움', '환불 불가 요금만 있음'],
+    },
+    {
+      no: 7, kind: 'notwin', id: 857190,
+      name: '카인드네스 호텔 종젱', en: 'Kindness Hotel Liuhe Night Market Jhong Jheng', open: 2010, star: 3,
+      lat: 22.6303, lng: 120.298, walk: '420m',
+      addr: '112 Zhongzheng 4th Road, Qianjin District, Kaohsiung',
+      score: 9.0, reviews: '565',
+      room: '스탠다드 더블 · 더블침대 1개 · 14㎡', total: 308428,
+      breakfast: '✅ 2인 포함', cancel: '12/7까지 무료',
+      tags: [['bad', '트윈 없음'], ['good', '조식 포함']],
+      pros: ['조식이 맛있다는 평이 많음', '카인드네스 계열 특유의 무료 간식'],
+      cons: ['이 날짜엔 더블룸만 있음 (침대 2개 방은 4인룸 3박 ₩498,180)', '스탠다드룸은 14㎡로 좁음'],
+    },
+  ];
+
+  const OTHERS = [
+    { no: 6, name: 'FX 호텔 중화로점', id: 1213975, lat: 22.62784, lng: 120.29633, walk: '760m', score: 8.5, room: '트렌디 더블', total: 238114, note: '무료 취소' },
+    { no: 8, name: '호텔 라인 (La Inn)', id: 4626534, lat: 22.634502, lng: 120.303163, walk: '360m', score: 9.0, room: '스탠다드룸', total: 375864, note: '조식 포함, 넓은 객실' },
+    { no: 9, name: '쿵 샹 디자인 호텔', id: 924808, lat: 22.634075, lng: 120.304885, walk: '400m', score: 8.9, room: '디럭스 더블 스위트', total: 421139, note: '패밀리룸 있음' },
+    { no: 10, name: '카인드네스 호텔 치셴', id: 858801, lat: 22.635748, lng: 120.300603, walk: '570m', score: 9.1, room: '비즈니스 더블', total: 414786, note: '조식 포함' },
+  ];
+
+  const COLORS = { twin: '#15803d', quad: '#2563eb', notwin: '#78716c' };
+
+  // 호텔 카드
+  const list = document.getElementById('hotel-list');
+  HOTELS.forEach((h) => {
+    const per = Math.round(h.total / 2);
+    const el = document.createElement('article');
+    el.className = 'card hotel' + (h.pick ? ' pick' : '');
+    el.id = 'hotel-' + h.no;
+    el.innerHTML = `
+      <div class="hotel-head">
+        <div class="num-badge" style="background:${COLORS[h.kind]}">${h.no}</div>
+        <div class="hotel-title">
+          <h3>${h.name}${h.pick ? ' <span class="tag">추천</span>' : ''}</h3>
+          <div class="en">${h.en} · ${h.star}성급 · ${h.open}년 오픈</div>
+          <div class="hotel-tags">${h.tags.map(([c, t]) => `<span class="tag ${c}">${t}</span>`).join('')}</div>
+        </div>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="k">3박 총액 (2인)</div><div class="v">${won(h.total)}</div></div>
+        <div class="fact"><div class="k">1인당</div><div class="v">${won(per)}</div></div>
+        <div class="fact"><div class="k">메이리다오역</div><div class="v">도보 ${h.walk}</div></div>
+        <div class="fact"><div class="k">평점</div><div class="v">${h.score} <span style="font-weight:400;color:var(--muted)">(${h.reviews})</span></div></div>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="k">객실</div><div class="v" style="font-weight:500">${h.room}</div></div>
+        <div class="fact"><div class="k">조식</div><div class="v" style="font-weight:500">${h.breakfast}</div></div>
+        <div class="fact"><div class="k">취소</div><div class="v" style="font-weight:500">${h.cancel}</div></div>
+      </div>
+      <div class="proscons">
+        <div class="pro"><h4>👍 좋은 점</h4><ul>${h.pros.map((p) => `<li>${p}</li>`).join('')}</ul></div>
+        <div class="con"><h4>👎 아쉬운 점</h4><ul>${h.cons.map((p) => `<li>${p}</li>`).join('')}</ul></div>
+      </div>
+      <div class="addr">📍 ${h.addr}</div>
+      <div class="links">
+        <button class="btn" type="button" data-focus="${h.no}">🗺️ 지도에서 보기</button>
+        <a class="btn" href="${gmapUrl(h.lat, h.lng)}" target="_blank" rel="noopener">구글 지도</a>
+        <a class="btn" href="${tripUrl(h.id)}" target="_blank" rel="noopener">트립닷컴 객실 보기</a>
+      </div>`;
+    list.appendChild(el);
+  });
+
+  const othersBody = document.getElementById('others-body');
+  OTHERS.forEach((o) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${o.no}</td>
+      <td><a href="${tripUrl(o.id)}" target="_blank" rel="noopener">${o.name}</a></td>
+      <td>${o.walk}</td>
+      <td>${o.score}</td>
+      <td>${o.room}</td>
+      <td class="num">${won(o.total)}</td>
+      <td>${o.note}</td>`;
+    othersBody.appendChild(tr);
+  });
+
+  // 지도
+  const map = L.map('map', { scrollWheelZoom: false }).setView([STATION.lat, STATION.lng], 16);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+
+  const pin = (cls, label) => L.divIcon({
+    className: '',
+    html: `<div class="pin ${cls}"><b>${label}</b></div>`,
+    iconSize: [30, 30],
+    iconAnchor: cls === 'station' || cls === 'poi' ? [15, 15] : [14, 30],
+    popupAnchor: [0, -28],
+  });
+
+  L.marker([STATION.lat, STATION.lng], { icon: pin('station', 'M'), zIndexOffset: 1000 })
+    .addTo(map)
+    .bindPopup(`<b>${STATION.name}</b><br>MRT 레드·오렌지라인 환승역<br>공항역(R4)에서 레드라인 약 20분`);
+  L.marker([LIUHE.lat, LIUHE.lng], { icon: pin('poi', '夜') })
+    .addTo(map)
+    .bindPopup(`<b>${LIUHE.name}</b><br>메이리다오역 바로 옆 관광 야시장`);
+
+  // 역 기준 도보 500m 반경
+  L.circle([STATION.lat, STATION.lng], {
+    radius: 500, color: '#7c3aed', weight: 1, fillOpacity: 0.05, dashArray: '4 4',
+  }).addTo(map);
+
+  const markers = {};
+  HOTELS.forEach((h) => {
+    const m = L.marker([h.lat, h.lng], { icon: pin(h.kind === 'twin' ? 'twin' : h.kind, h.no) })
+      .addTo(map)
+      .bindPopup(`<b>${h.no}. ${h.name}</b><br>${h.room}<br>3박 ${won(h.total)} · 도보 ${h.walk}<br><a href="#hotel-${h.no}">카드로 이동 ↓</a>`);
+    markers[h.no] = m;
+  });
+  OTHERS.forEach((o) => {
+    const m = L.marker([o.lat, o.lng], { icon: pin('notwin', o.no), opacity: 0.85 })
+      .addTo(map)
+      .bindPopup(`<b>${o.no}. ${o.name}</b><br>${o.room} · 3박 ${won(o.total)}<br>트윈 여부 미확인`);
+    markers[o.no] = m;
+  });
+
+  const all = [...HOTELS, ...OTHERS].map((h) => [h.lat, h.lng]).concat([[STATION.lat, STATION.lng]]);
+  map.fitBounds(all, { padding: [30, 30] });
+
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-focus]');
+    if (!b) return;
+    const no = Number(b.dataset.focus);
+    document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' });
+    const m = markers[no];
+    map.setView(m.getLatLng(), 17);
+    m.openPopup();
+  });
+</script>
+</body>
+</html>
