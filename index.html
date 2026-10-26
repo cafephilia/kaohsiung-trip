@@ -116,7 +116,7 @@
   .tag.bad { background: var(--bad-soft); color: var(--bad); }
   .tag.info { background: var(--info-soft); color: var(--info); }
 
-  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
   .summary-grid .card h3 { margin: 8px 0 6px; }
   .big { font-size: 26px; font-weight: 700; line-height: 1.2; }
   .big small { font-size: 14px; font-weight: 500; color: var(--muted); }
@@ -270,6 +270,16 @@
           <li>역에서 1km로 가장 멀고 조식 없음</li>
         </ul>
       </div>
+      <div class="card">
+        <span class="tag good">🍳 조식 · 가성비</span>
+        <h3>에버럭 호텔 코지룸 (싱글침대 2개, 조식 포함)</h3>
+        <div class="big">약 ₩595,000 <small>/ 1인 · 묶음 추정</small></div>
+        <ul class="tight">
+          <li>따로 예약 시 2인 <b>₩1,259,082</b> (1인 ₩629,541)</li>
+          <li>조식 평이 좋고 호텔 3박이 22만 원으로 가장 저렴</li>
+          <li>13㎡로 좁고 오래된 건물, 12/6까지 무료 취소</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -344,9 +354,9 @@
     <p class="lead">번호는 아래 호텔 카드 번호와 같습니다. 핀을 누르면 요약이 보여요.</p>
     <div id="map" role="region" aria-label="메이리다오역 주변 호텔 지도"></div>
     <div class="legend">
-      <span><i class="dot" style="background:#15803d"></i>트윈룸 있음</span>
-      <span><i class="dot" style="background:#2563eb"></i>침대 2개(더블 2) 객실</span>
-      <span><i class="dot" style="background:#78716c"></i>이 날짜에 트윈 없음·미확인</span>
+      <span><i class="dot" style="background:#15803d"></i>싱글침대 2개 객실 있음 (트윈 이름이 아니어도 포함)</span>
+      <span><i class="dot" style="background:#2563eb"></i>더블침대 2개 객실</span>
+      <span><i class="dot" style="background:#78716c"></i>침대 2개 객실 없음·예약 불가</span>
       <span><i class="dot" style="background:#7c3aed"></i>메이리다오역 (MRT 레드·오렌지 환승)</span>
       <span><i class="dot" style="background:#c2410c"></i>류허 야시장</span>
     </div>
@@ -358,12 +368,15 @@
   <!-- 호텔 -->
   <section id="hotels">
     <h2>🏨 호텔 후보</h2>
-    <p class="lead">가격은 트립닷컴 12/10–13 <b>3박 총액</b>(객실 1개, 성인 2명, 세금 포함)입니다. 장단점은 트립닷컴 투숙객 리뷰를 요약했어요.</p>
+    <p class="lead">가격은 트립닷컴 12/10–13 <b>3박 총액</b>(객실 1개, 성인 2명, 세금 포함)입니다. 객실 이름이 '트윈'이 아니어도 <b>싱글침대 2개</b>면 후보에 넣었어요. 장단점은 트립닷컴 투숙객 리뷰를 요약했어요.</p>
+    <div class="callout info" style="margin-top:0;margin-bottom:14px">
+      <b>🍳 조식 평이 좋은 곳</b>: ⑪ 에버럭, ⑧ 호텔 라인, ⑨ 쿵샹 디자인 (모두 싱글침대 2개 객실 + 조식 포함). 조식으로 유명한 <b>호텔 두아·하워드 플라자</b>는 12/12(토)가 만실이라 이 날짜엔 트립닷컴·부킹닷컴 모두 예약할 수 없어요.
+    </div>
     <div class="hotels" id="hotel-list"></div>
   </section>
 
   <section id="others">
-    <h3 style="margin-bottom:8px">기타 주변 호텔 <span class="tag">트윈 여부 미확인</span></h3>
+    <h3 style="margin-bottom:8px">기타 주변 호텔 <span class="tag">싱글 2개 객실 없음 · 예약 불가</span></h3>
     <div class="table-wrap others">
       <table>
         <thead>
@@ -389,9 +402,13 @@
           <tr><td>② 더 클라우드 · 트윈룸</td><td>✅ 2인</td><td>12/6까지 무료</td><td class="num"><b>₩621,700</b></td><td class="num">₩1,243,400</td><td class="num">₩1,315,139</td><td class="num">₩71,739</td></tr>
           <tr><td>⑤ 로얄 파인 · 스탠다드 트윈</td><td>없음</td><td>❌ 환불 불가</td><td class="num"><b>₩586,750</b></td><td class="num">₩1,173,500</td><td class="num">₩1,241,167</td><td class="num">₩67,667</td></tr>
           <tr><td>⑤ 로얄 파인 · 스탠다드 트윈</td><td>없음</td><td>12/6까지 무료</td><td class="num"><b>₩595,850</b></td><td class="num">₩1,191,700</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td>⑪ 에버럭 · 코지룸 (싱글 2) <span class="tag warn">추정</span></td><td>✅ 2인</td><td>12/6까지 무료</td><td class="num">약 ₩595,000</td><td class="num">약 ₩1,190,000</td><td class="num">₩1,259,082</td><td class="num">약 ₩69,000</td></tr>
+          <tr><td>⑧ 호텔 라인 · 수페리어 (싱글 2) <span class="tag warn">추정</span></td><td>✅ 2인</td><td>12/8까지 무료</td><td class="num">약 ₩680,000</td><td class="num">약 ₩1,360,000</td><td class="num">₩1,443,878</td><td class="num">약 ₩84,000</td></tr>
+          <tr><td>⑨ 쿵샹 · 디럭스 트윈 스위트 <span class="tag warn">추정</span></td><td>✅ 2인</td><td>12/7까지 무료</td><td class="num">약 ₩702,600</td><td class="num">약 ₩1,405,000</td><td class="num">₩1,493,264</td><td class="num">약 ₩88,000</td></tr>
         </tbody>
       </table>
     </div>
+    <p class="note"><b>추정</b> 표시는 묶음 화면에서 직접 고르지 못해 계산한 값이에요. 직접 확인한 5개 호텔의 묶음가가 모두 <i>1인 ≈ ₩493,750 + 호텔 단독 3박가의 절반 × 0.92</i>에 ±₩1,000 안으로 맞아서 같은 식을 썼어요. 에버럭은 묶음 검색 결과 상위에 뜨지 않아 묶음 제공 여부도 확인이 필요해요.</p>
     <div class="callout info">
       <b>🔧 트립닷컴에서 같은 조건 만드는 법</b>
       <ol class="tight">
@@ -428,6 +445,10 @@
           <tr><td>따로</td><td>① 후 하우스 트윈</td><td class="num">₩1,298,340</td><td class="num">₩649,170</td></tr>
           <tr><td>따로</td><td>② 더 클라우드 트윈 · 조식 포함</td><td class="num">₩1,315,139</td><td class="num">₩657,570</td></tr>
           <tr><td>따로</td><td>⑤ 로얄 파인 트윈 · 환불 불가</td><td class="num">₩1,241,167</td><td class="num">₩620,584</td></tr>
+          <tr><td>묶음 (추정)</td><td>⑪ 에버럭 코지룸 · 조식 포함</td><td class="num">약 ₩1,190,000</td><td class="num">약 ₩595,000</td></tr>
+          <tr><td>따로</td><td>⑪ 에버럭 코지룸 · 조식 포함</td><td class="num">₩1,259,082</td><td class="num">₩629,541</td></tr>
+          <tr><td>따로</td><td>⑧ 호텔 라인 수페리어 · 조식 포함</td><td class="num">₩1,443,878</td><td class="num">₩721,939</td></tr>
+          <tr><td>따로</td><td>⑨ 쿵샹 디럭스 트윈 스위트 · 조식 포함</td><td class="num">₩1,493,264</td><td class="num">₩746,632</td></tr>
           <tr><td>따로</td><td>③ Sleepie 4인룸 (더블 2개)</td><td class="num">₩1,351,421</td><td class="num">₩675,711</td></tr>
         </tbody>
       </table>
@@ -543,17 +564,59 @@
       score: 9.0, reviews: '565',
       room: '스탠다드 더블 · 더블침대 1개 · 14㎡', total: 308428,
       breakfast: '✅ 2인 포함', cancel: '12/7까지 무료',
-      tags: [['bad', '트윈 없음'], ['good', '조식 포함']],
+      tags: [['bad', '싱글 2개 객실 없음'], ['good', '조식 포함'], ['good', '🍳 조식 평 좋음']],
       pros: ['조식이 맛있다는 평이 많음', '카인드네스 계열 특유의 무료 간식'],
       cons: ['이 날짜엔 더블룸만 있음 (침대 2개 방은 4인룸 3박 ₩498,180)', '스탠다드룸은 14㎡로 좁음'],
     },
   ];
 
+  // 싱글침대 2개 객실이 있는 추가 후보 (조식 평이 좋은 곳 위주)
+  HOTELS.splice(2, 0, {
+    no: 11, kind: 'twin', id: 924755, gq: "Ever Luck Hotel Kaohsiung Minzhu Road",
+    name: '에버럭 호텔 (九福大飯店)', en: 'Ever Luck Hotel', open: 1979, star: 3,
+    lat: 22.633392, lng: 120.30055, walk: '270m',
+    addr: '16 Minzhu Road, Xinxing District, Kaohsiung',
+    score: 8.8, reviews: '64',
+    room: '코지룸 · 싱글침대 2개 · 13㎡ · 욕조', total: 219786,
+    breakfast: '✅ 2인 포함', cancel: '12/6 12:00까지 무료',
+    bundle: '약 ₩595,000 (추정)',
+    tags: [['good', '싱글침대 2개'], ['good', '조식 포함'], ['good', '🍳 조식 평 좋음'], ['info', '조식 포함 최저가'], ['warn', '2개 남음']],
+    pros: ['조식 메뉴가 다양하고 담백한 채소 요리가 좋다는 평', '조식 포함 3박 22만 원으로 가장 저렴', '더 클라우드 바로 옆, 역·야시장 도보권, 일본어·영어 응대'],
+    cons: ['1979년 개업한 오래된 건물', '코지룸은 13㎡로 좁음', '노후 시설·위생 개선 요청 리뷰 일부'],
+  });
+  HOTELS.push(
+    {
+      no: 8, kind: 'twin', id: 4626534, gq: "La Inn 513 Qixian 1st Road Kaohsiung",
+      name: '호텔 라인 (La Inn)', en: 'La Inn · 樂逸旅居 七賢館', open: 2016, star: 4,
+      lat: 22.634502, lng: 120.303163, walk: '360m',
+      addr: 'No.513 Qixian 1st Road, Xinxing District, Kaohsiung',
+      score: 9.0, reviews: '339',
+      room: '수페리어룸 · 싱글침대 2개 · 27㎡', total: 404582,
+      breakfast: '✅ 2인 포함', cancel: '12/8 15:00까지 무료',
+      bundle: '약 ₩680,000 (추정)',
+      tags: [['good', '싱글침대 2개'], ['good', '조식 포함'], ['good', '🍳 조식 평 좋음'], ['', '27㎡ 넓음']],
+      pros: ['조식이 맛있고 깔끔하다는 평, 라운지 애프터눈티 제공', '27㎡로 넓은 객실, 평점 9.0', '역·야시장 모두 도보권'],
+      cons: ['조식 가짓수는 적다는 의견', '방음이 아쉽다는 리뷰 일부', '3박 40만 원대로 비싼 편'],
+    },
+    {
+      no: 9, kind: 'twin', id: 924808, gq: "Kung Shang Design Hotel Kaohsiung",
+      name: '쿵샹 디자인 호텔', en: 'Kung Shang Design Hotel', open: 2011, star: 4,
+      lat: 22.634075, lng: 120.304885, walk: '400m',
+      addr: '237 Linsen 1st Road, Xinxing District, Kaohsiung',
+      score: 8.9, reviews: '751',
+      room: '디럭스 트윈 스위트 · 싱글침대 2개 · 55㎡', total: 453968,
+      breakfast: '✅ 2인 포함', cancel: '12/7 23:59까지 무료',
+      bundle: '약 ₩702,600 (추정)',
+      tags: [['good', '싱글침대 2개'], ['good', '조식 포함'], ['good', '🍳 조식 평 좋음'], ['', '55㎡ 스위트']],
+      pros: ['55㎡ 스위트라 방이 아주 넓음', '조식이 알차고 신선한 채소·과일이 있다는 평', '2층 라운지 해피아워 커피, 직원 영어 응대'],
+      cons: ['후보 중 가장 비쌈 (3박 45만 원대)', '역 출구에 따라 도보 5분 정도'],
+    },
+  );
+
   const OTHERS = [
-    { no: 6, name: 'FX 호텔 중화로점', id: 1213975, gq: "FX Hotel Kaohsiung Zhonghua Road", lat: 22.62784, lng: 120.29633, walk: '760m', score: 8.5, room: '트렌디 더블', total: 238114, note: '무료 취소' },
-    { no: 8, name: '호텔 라인 (La Inn)', id: 4626534, gq: "La Inn 513 Qixian 1st Road Kaohsiung", lat: 22.634502, lng: 120.303163, walk: '360m', score: 9.0, room: '스탠다드룸', total: 375864, note: '조식 포함, 넓은 객실' },
-    { no: 9, name: '쿵 샹 디자인 호텔', id: 924808, gq: "Kung Shang Design Hotel Kaohsiung", lat: 22.634075, lng: 120.304885, walk: '400m', score: 8.9, room: '디럭스 더블 스위트', total: 421139, note: '패밀리룸 있음' },
-    { no: 10, name: '카인드네스 호텔 치셴', id: 858801, gq: "Kindness Hotel Qixian Kaohsiung", lat: 22.635748, lng: 120.300603, walk: '570m', score: 9.1, room: '비즈니스 더블', total: 414786, note: '조식 포함' },
+    { no: 6, name: 'FX 호텔 중화로점', id: 1213975, gq: "FX Hotel Kaohsiung Zhonghua Road", lat: 22.62784, lng: 120.29633, walk: '760m', score: 8.5, room: '트렌디 더블', total: 238114, note: '싱글 2개 객실 없음 (퀸 2개 패밀리룸 3박 ₩445,164)' },
+    { no: 10, name: '카인드네스 호텔 치셴', id: 858801, gq: "Kindness Hotel Qixian Kaohsiung", lat: 22.635748, lng: 120.300603, walk: '570m', score: 9.1, room: '비즈니스 더블', total: 414786, note: '🍳 조식 평 좋음. 이 날짜엔 더블룸만 있음' },
+    { no: 12, name: '호텔 두아 (Hotel Dùa)', id: 1233006, gq: "Hotel Dùa Kaohsiung", lat: 22.6306778, lng: 120.30445, walk: '역 바로 앞', score: 9.4, room: '—', total: null, note: '🍳 조식 평 최고 수준. 12/12(토) 만실로 트립닷컴·부킹닷컴 모두 예약 불가' },
   ];
 
   const COLORS = { twin: '#15803d', quad: '#2563eb', notwin: '#78716c' };
@@ -608,7 +671,7 @@
       <td>${o.walk}</td>
       <td>${o.score}</td>
       <td>${o.room}</td>
-      <td class="num">${won(o.total)}</td>
+      <td class="num">${o.total ? won(o.total) : '예약 불가'}</td>
       <td>${o.note}</td>`;
     othersBody.appendChild(tr);
   });
@@ -650,7 +713,7 @@
   OTHERS.forEach((o) => {
     const m = L.marker([o.lat, o.lng], { icon: pin('notwin', o.no), opacity: 0.85 })
       .addTo(map)
-      .bindPopup(`<b>${o.no}. ${o.name}</b><br>${o.room} · 3박 ${won(o.total)}<br>트윈 여부 미확인 · <a href="${gmapUrl(o.gq)}" target="_blank" rel="noopener">구글 지도</a>`);
+      .bindPopup(`<b>${o.no}. ${o.name}</b><br>${o.total ? `${o.room} · 3박 ${won(o.total)}` : '이 날짜 예약 불가'}<br>${o.note} ·<a href="${gmapUrl(o.gq)}" target="_blank" rel="noopener">구글 지도</a>`);
     markers[o.no] = m;
   });
 
