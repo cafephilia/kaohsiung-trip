@@ -455,7 +455,7 @@
 <script>
   const won = (n) => '₩' + n.toLocaleString('ko-KR');
   const tripUrl = (id) => `https://kr.trip.com/hotels/detail/?hotelId=${id}&checkIn=2026-12-10&checkOut=2026-12-13&adult=2&crn=1&curr=KRW`;
-  const gmapUrl = (lat, lng) => `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+  const gmapUrl = (q) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 
   const STATION = { name: '메이리다오역 (美麗島)', lat: 22.6313887, lng: 120.3019131 };
   const LIUHE = { name: '류허 야시장 (六合夜市)', lat: 22.6328, lng: 120.2992 };
@@ -463,7 +463,7 @@
   // kind: twin | quad | notwin
   const HOTELS = [
     {
-      no: 1, kind: 'twin', pick: true, id: 907030,
+      no: 1, kind: 'twin', pick: true, id: 907030, gq: "Kaohsiung Hù House hotel",
       name: '후 하우스', en: 'Kaohsiung Hù House', open: 2012, star: 4,
       lat: 22.634508, lng: 120.301453, walk: '350m',
       addr: 'No.11, Qixian 2nd Rd, Sinsing District, Kaohsiung',
@@ -475,7 +475,7 @@
       cons: ['외관과 복도 카펫이 낡았다는 평', '일부 객실 담배 냄새·청소 불만 리뷰', '조식은 평이 갈림'],
     },
     {
-      no: 2, kind: 'twin', id: 1204983,
+      no: 2, kind: 'twin', id: 1204983, gq: "The Cloud Hotel Kaohsiung",
       name: '더 클라우드 호텔', en: 'The Cloud Hotel', open: 2013, star: 2,
       lat: 22.633242, lng: 120.300116, walk: '360m',
       addr: 'No.18 Minzhu Road, Sinsing District, Kaohsiung',
@@ -487,7 +487,7 @@
       cons: ['객실이 작고 답답하다는 평', '조식 메뉴가 단출하다는 의견', '내부 공사 중이었다는 최근 리뷰'],
     },
     {
-      no: 3, kind: 'quad', id: 131818636,
+      no: 3, kind: 'quad', id: 131818636, gq: "Sleepie Design Hotel Kaohsiung",
       name: 'Sleepie Design Hotel', en: 'Sleepie Design Hotel', open: 2025, star: 2,
       lat: 22.631094, lng: 120.298933, walk: '340m',
       addr: 'No.72, Zhongzheng 4th Road, Sinsing District, Kaohsiung',
@@ -499,7 +499,7 @@
       cons: ['트윈은 없음. 침대 2개 방은 4인룸이라 가격이 높음', '조식 없음', '리뷰 수가 아직 적음'],
     },
     {
-      no: 4, kind: 'notwin', id: 131650334,
+      no: 4, kind: 'notwin', id: 131650334, gq: "橙居高雄 Retro Kaohsiung",
       name: '레트로 가오슝', en: 'Retro Kaohsiung', open: 2025, star: 3,
       lat: 22.628556, lng: 120.300138, walk: '370m',
       addr: 'No. 205, Datong Road, Sinsing District, Kaohsiung',
@@ -511,7 +511,7 @@
       cons: ['12/10–13에는 더블룸만 남음', '와이파이·온도 조절 불만 일부'],
     },
     {
-      no: 5, kind: 'twin', id: 98052422,
+      no: 5, kind: 'twin', id: 98052422, gq: "Royal Fine Hotel Kaohsiung",
       name: '로얄 파인 호텔', en: 'Royal Fine Hotel', open: 2022, star: 4,
       lat: 22.632222, lng: 120.29374, walk: '1km',
       addr: 'No. 207, Qixian 2nd Rd, Qianjin District, Kaohsiung',
@@ -523,7 +523,7 @@
       cons: ['역에서 1km로 다소 멂', '방이 좁아 큰 캐리어를 펴기 어려움', '환불 불가 요금만 있음'],
     },
     {
-      no: 7, kind: 'notwin', id: 857190,
+      no: 7, kind: 'notwin', id: 857190, gq: "康橋商旅 六合夜市中正館",
       name: '카인드네스 호텔 종젱', en: 'Kindness Hotel Liuhe Night Market Jhong Jheng', open: 2010, star: 3,
       lat: 22.6303, lng: 120.298, walk: '420m',
       addr: '112 Zhongzheng 4th Road, Qianjin District, Kaohsiung',
@@ -537,10 +537,10 @@
   ];
 
   const OTHERS = [
-    { no: 6, name: 'FX 호텔 중화로점', id: 1213975, lat: 22.62784, lng: 120.29633, walk: '760m', score: 8.5, room: '트렌디 더블', total: 238114, note: '무료 취소' },
-    { no: 8, name: '호텔 라인 (La Inn)', id: 4626534, lat: 22.634502, lng: 120.303163, walk: '360m', score: 9.0, room: '스탠다드룸', total: 375864, note: '조식 포함, 넓은 객실' },
-    { no: 9, name: '쿵 샹 디자인 호텔', id: 924808, lat: 22.634075, lng: 120.304885, walk: '400m', score: 8.9, room: '디럭스 더블 스위트', total: 421139, note: '패밀리룸 있음' },
-    { no: 10, name: '카인드네스 호텔 치셴', id: 858801, lat: 22.635748, lng: 120.300603, walk: '570m', score: 9.1, room: '비즈니스 더블', total: 414786, note: '조식 포함' },
+    { no: 6, name: 'FX 호텔 중화로점', id: 1213975, gq: "FX Hotel Kaohsiung Zhonghua Road", lat: 22.62784, lng: 120.29633, walk: '760m', score: 8.5, room: '트렌디 더블', total: 238114, note: '무료 취소' },
+    { no: 8, name: '호텔 라인 (La Inn)', id: 4626534, gq: "La Inn 513 Qixian 1st Road Kaohsiung", lat: 22.634502, lng: 120.303163, walk: '360m', score: 9.0, room: '스탠다드룸', total: 375864, note: '조식 포함, 넓은 객실' },
+    { no: 9, name: '쿵 샹 디자인 호텔', id: 924808, gq: "Kung Shang Design Hotel Kaohsiung", lat: 22.634075, lng: 120.304885, walk: '400m', score: 8.9, room: '디럭스 더블 스위트', total: 421139, note: '패밀리룸 있음' },
+    { no: 10, name: '카인드네스 호텔 치셴', id: 858801, gq: "Kindness Hotel Qixian Kaohsiung", lat: 22.635748, lng: 120.300603, walk: '570m', score: 9.1, room: '비즈니스 더블', total: 414786, note: '조식 포함' },
   ];
 
   const COLORS = { twin: '#15803d', quad: '#2563eb', notwin: '#78716c' };
@@ -579,7 +579,7 @@
       <div class="addr">📍 ${h.addr}</div>
       <div class="links">
         <button class="btn" type="button" data-focus="${h.no}">🗺️ 지도에서 보기</button>
-        <a class="btn" href="${gmapUrl(h.lat, h.lng)}" target="_blank" rel="noopener">구글 지도</a>
+        <a class="btn" href="${gmapUrl(h.gq)}" target="_blank" rel="noopener">구글 지도</a>
         <a class="btn" href="${tripUrl(h.id)}" target="_blank" rel="noopener">트립닷컴 객실 보기</a>
       </div>`;
     list.appendChild(el);
@@ -590,7 +590,7 @@
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${o.no}</td>
-      <td><a href="${tripUrl(o.id)}" target="_blank" rel="noopener">${o.name}</a></td>
+      <td>${o.name}<span class="sub"><a href="${gmapUrl(o.gq)}" target="_blank" rel="noopener">구글 지도</a> · <a href="${tripUrl(o.id)}" target="_blank" rel="noopener">트립닷컴</a></span></td>
       <td>${o.walk}</td>
       <td>${o.score}</td>
       <td>${o.room}</td>
@@ -630,13 +630,13 @@
   HOTELS.forEach((h) => {
     const m = L.marker([h.lat, h.lng], { icon: pin(h.kind === 'twin' ? 'twin' : h.kind, h.no) })
       .addTo(map)
-      .bindPopup(`<b>${h.no}. ${h.name}</b><br>${h.room}<br>3박 ${won(h.total)} · 도보 ${h.walk}<br><a href="#hotel-${h.no}">카드로 이동 ↓</a>`);
+      .bindPopup(`<b>${h.no}. ${h.name}</b><br>${h.room}<br>3박 ${won(h.total)} · 도보 ${h.walk}<br><a href="#hotel-${h.no}">카드로 이동 ↓</a> · <a href="${gmapUrl(h.gq)}" target="_blank" rel="noopener">구글 지도</a>`);
     markers[h.no] = m;
   });
   OTHERS.forEach((o) => {
     const m = L.marker([o.lat, o.lng], { icon: pin('notwin', o.no), opacity: 0.85 })
       .addTo(map)
-      .bindPopup(`<b>${o.no}. ${o.name}</b><br>${o.room} · 3박 ${won(o.total)}<br>트윈 여부 미확인`);
+      .bindPopup(`<b>${o.no}. ${o.name}</b><br>${o.room} · 3박 ${won(o.total)}<br>트윈 여부 미확인 · <a href="${gmapUrl(o.gq)}" target="_blank" rel="noopener">구글 지도</a>`);
     markers[o.no] = m;
   });
 
