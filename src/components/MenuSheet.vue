@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import type { MenuBoard } from '../types'
-import { formatTwd } from '../utils'
+import Price from './Price.vue'
 
 defineProps<{ menu: MenuBoard }>()
 const emit = defineEmits<{ close: [] }>()
@@ -49,7 +49,7 @@ onBeforeUnmount(() => {
                   {{ it.ko }}
                   <span v-if="it.tag" class="mi-tag" :class="{ hot: it.tag === '매움' }">{{ it.tag }}</span>
                 </span>
-                <span class="mi-twd">{{ formatTwd(it.twd) }}</span>
+                <Price class="mi-twd" :twd="it.twd" />
               </div>
               <div class="zh mi-zh">{{ it.zh }}</div>
               <p v-if="it.desc" class="mi-desc">{{ it.desc }}</p>

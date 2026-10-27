@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import { NIGHT_FOODS, NIGHT_MARKETS, NIGHT_PHRASES, NIGHT_TIPS, TRIP_NIGHTS } from '../data/night'
 import { MARKET_PHOTOS, NIGHT_PHOTOS } from '../data/photos'
-import { formatTwd } from '../utils'
+import Price from './Price.vue'
 import MapLink from './MapLink.vue'
 
 const ALL = '전체'
@@ -87,7 +87,7 @@ const foods = computed(() =>
         </div>
         <div class="nf-head">
           <span class="nf-name">{{ f.name }}</span>
-          <span class="nf-price">{{ formatTwd(f.price) }}</span>
+          <Price class="nf-price" :twd="f.price" />
         </div>
         <div class="nf-zh zh">{{ f.zh }}</div>
         <p class="nf-desc">{{ f.desc }}</p>

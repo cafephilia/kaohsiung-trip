@@ -1,4 +1,5 @@
 import type { PackGroup, TipGroup } from '../types'
+import { addKrw } from '../utils'
 
 // 출발 전 짐 챙기기. 체크 상태는 CHECKLIST와 같은 저장 키(khh-ck-)를 쓴다
 export const PACKING: PackGroup[] = [
@@ -57,6 +58,7 @@ export const FIRST_TRIP_TIPS: TipGroup[] = [
   {
     title: '돈과 결제',
     items: [
+      ['원화 환산', '앱의 원화 금액은 1 NT$ ≈ 41원(2026-10-27 환율 40.7원에 환전 수수료를 조금 더한 값)으로 어림한 값이에요. 대충 NT$ 금액에 40을 곱하면 돼요.'],
       ['현금 위주', '야시장, 노점, 작은 식당은 현금만 받는 곳이 많아요. 큰돈(NT$1,000)보다 NT$100 지폐와 동전을 챙겨 다니면 편해요.'],
       ['현금 인출', '세븐일레븐·패밀리마트 안 ATM에서 해외 카드로 대만달러를 뽑을 수 있어요. 수수료는 카드마다 달라요.'],
       ['팁 없음', '팁 문화가 없어요. 호텔 식당이나 큰 레스토랑은 봉사료 10%가 계산서에 붙어 나와요.'],
@@ -131,3 +133,5 @@ export const USEFUL_APPS: TipGroup[] = [
     ],
   },
 ]
+
+addKrw(PACKING, FIRST_TRIP_TIPS, USEFUL_APPS)

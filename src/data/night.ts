@@ -1,4 +1,5 @@
 import type { NightFood, NightMarket, Phrase } from '../types'
+import { addKrw } from '../utils'
 
 // 야시장 특별 코너. 2026-10 조사 기준 (TVBS 食尚玩家, 鏡週刊 2025-12, tripool, fullfenblog 2025, gofunit 2026-10 등)
 // 가격은 출처 연도가 달라 현장 가격표가 우선이다
@@ -206,3 +207,5 @@ export const NIGHT_TIPS: string[] = [
   '다 먹은 그릇은 산 노점이나 공용 테이블 수거함에 두고, 노점 자리는 다 먹으면 비켜 줘요.',
   'MRT 안에서는 음식을 먹으면 벌금이에요. 야시장에서 산 음식은 다 먹고 타요.',
 ]
+
+addKrw(NIGHT_MARKETS, NIGHT_FOODS, NIGHT_TIPS)

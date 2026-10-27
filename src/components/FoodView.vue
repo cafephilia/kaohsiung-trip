@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue'
 import { FOOD_SPOTS } from '../data/foodspots'
 import { SPOT_PHOTOS } from '../data/photos'
-import { formatTwd } from '../utils'
+import Price from './Price.vue'
 import Badges from './Badges.vue'
 import MapLink from './MapLink.vue'
 import MenuButton from './MenuButton.vue'
@@ -70,7 +70,7 @@ const spots = computed(() =>
           <ul class="menu">
             <li v-for="[ko, zh, twd] in s.orders" :key="ko">
               <span>{{ ko }} <span class="zh sub">{{ zh }}</span></span>
-              <span class="twd">{{ formatTwd(twd) }}</span>
+              <Price class="twd" :twd="twd" />
             </li>
           </ul>
           <dl class="facts">

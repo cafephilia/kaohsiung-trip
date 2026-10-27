@@ -3,7 +3,8 @@ import { computed, inject } from 'vue'
 import { KIND_LABEL, type Item } from '../types'
 import { PACKING } from '../data/trip'
 import { packDone, packed, packTotal } from '../packing'
-import { formatTwd, openBaggageKey, openPackKey } from '../utils'
+import { openBaggageKey, openPackKey } from '../utils'
+import Price from './Price.vue'
 import KindIcon from './KindIcon.vue'
 import MapLink from './MapLink.vue'
 import MenuButton from './MenuButton.vue'
@@ -78,7 +79,7 @@ const packLeft = computed(() => {
         <ul v-if="item.menu" class="menu">
           <li v-for="[name, twd] in item.menu" :key="name">
             <span>{{ name }}</span>
-            <span class="twd">{{ formatTwd(twd) }}</span>
+            <Price class="twd" :twd="twd" />
           </li>
         </ul>
         <ol v-if="item.picks" class="picks">

@@ -1,4 +1,5 @@
 import type { CheckItem, Day, Flight, LatLng, PathMode, PathStop, Pick, Place, TipGroup } from '../types'
+import { addKrw } from '../utils'
 import { PHOTOS } from './photos'
 
 export { FIRST_TRIP_TIPS, PACKING, USEFUL_APPS } from './common'
@@ -795,3 +796,6 @@ export const EMBASSY = {
   addr: '台北市基隆路一段333號 1506室',
   map: '駐台北韓國代表部 台北市基隆路一段333號',
 }
+
+// 글 속 NT$ 금액 옆에 원화 어림값을 붙인다
+addKrw(STAY, HOTEL_FACTS, FLIGHTS, FLIGHT_INCLUDES, DAYS, CHECKLIST, BAGGAGE_SUMMARY, BAGGAGE, FARES, FARE_NOTES, WALKS, EVENTS, WEATHER, CONTACTS)
