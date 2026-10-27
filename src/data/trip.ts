@@ -276,7 +276,7 @@ export const DAYS: Day[] = [
         note: '한국 시각 11:00 출발 → 대만 시각 13:15 도착. 비행 약 3시간 15분.', dur: '3h 15m',
       },
       {
-        t: '13:15', pos: POS.airport, k: 'move', title: '가오슝 공항 도착 · 입국', zh: '高雄國際機場 國際線',
+        t: '13:15', pos: POS.airport, k: 'move', title: '가오슝 공항 도착 · 입국', photo: PHOTOS.airport, zh: '高雄國際機場 國際線',
         note: '여기부터 대만 시각이에요. 입국심사를 마치고 짐을 찾은 뒤 MRT로 가요.',
         facts: [
           ['입국', '온라인 입국신고서를 냈으면 여권만 보여 주면 돼요'],
@@ -287,7 +287,7 @@ export const DAYS: Day[] = [
         map: '高雄國際機場 國際線航廈',
       },
       {
-        t: '14:20', k: 'move', title: '공항 → 숙소 · MRT 레드라인', taxi: HOTEL,
+        t: '14:20', k: 'move', title: '공항 → 숙소 · MRT 레드라인', photo: PHOTOS.mrt, taxi: HOTEL,
         path: [WALK, ST.r4, RED, ST.r10, WALK],
         note: '갈아타지 않고 메이리다오역까지 16분. 11번 출구로 나와 3분 걸으면 숙소예요.', dur: '30m',
         ways: [
@@ -408,7 +408,7 @@ export const DAYS: Day[] = [
         ],
       },
       {
-        t: '09:05', pos: POS.pagodas, k: 'sight', title: '롄츠탄 용호탑 · 춘추각', photo: PHOTOS.pagodas, zh: '蓮池潭 龍虎塔 · 春秋閣',
+        t: '09:05', pos: POS.pagodas, k: 'sight', title: '롄츠탄 용호탑 · 춘추각', photo: PHOTOS.lotuspond, zh: '蓮池潭 龍虎塔 · 春秋閣',
         note: '용의 입으로 들어가 호랑이 입으로 나오면 액운이 사라진다는 탑. 2023–2025년 보수를 마치고 다시 열었어요.', dur: '1h',
         facts: [
           ['시간', '용호탑 06:00–17:30 · 춘추각 06:00–21:00 · 무료'],
@@ -441,13 +441,13 @@ export const DAYS: Day[] = [
         map: '鼓山輪渡站',
       },
       {
-        t: '11:20', pos: POS.lighthouse, k: 'sight', title: '치허우 등대 · 포대 전망', zh: '旗后燈塔 · 旗後砲台',
+        t: '11:20', pos: POS.lighthouse, k: 'sight', title: '치허우 등대 · 포대 전망', photo: PHOTOS.lighthouse, zh: '旗后燈塔 · 旗後砲台',
         note: '언덕 위 등대에서 가오슝 항구와 시내, 치진 해변이 한눈에 보여요. 점심 전에 배를 꺼뜨리는 오르막이에요.', dur: '1h',
         facts: [['시간', '등대 10:00–21:00 · 포대 24시간 · 무료'], ['길', '선착장에서 오르막 도보 9–10분']],
         map: '旗后燈塔',
       },
       {
-        t: '12:30', pos: POS.qihou, k: 'food', title: '점심 · 치진 해산물 거리', zh: '旗后活海產',
+        t: '12:30', pos: POS.qihou, k: 'food', title: '점심 · 치진 해산물 거리', photo: PHOTOS.cijinseafood, zh: '旗后活海產',
         note: '얼음 위에 늘어놓은 해산물을 고르고 찜·볶음·튀김을 정하면 바로 요리해 줘요. 오늘 점심은 해산물을 제대로 먹는 날이에요.', dur: '1h 15m',
         picks: CIJIN_PICKS,
         tip: '시가(時價) 품목은 1근(600g)·1냥(37.5g) 단가와 무게를 먼저 확인하고, 입구에서 랍스터를 권하는 가게는 피하세요. 둘이면 해산물 3–4가지 + 볶음밥으로 NT$800–1,000 정도예요.',
@@ -456,7 +456,7 @@ export const DAYS: Day[] = [
         map: '旗后活海產 高雄市旗津區廟前路31號',
       },
       {
-        t: '13:50', pos: POS.cijinBeach, k: 'sight', title: '치진 해안공원 · 무지개 교회', zh: '旗津海岸公園 · 彩虹教堂', optional: true,
+        t: '13:50', pos: POS.cijinBeach, k: 'sight', title: '치진 해안공원 · 무지개 교회', photo: PHOTOS.cijinbeach, zh: '旗津海岸公園 · 彩虹教堂', optional: true,
         note: '선착장 근처에서 자전거를 빌려 해안 도로를 달려요. 무지개 교회는 16:00에 닫아요.', dur: '1h 15m',
         facts: [['자전거', '선착장 앞 대여점·유바이크'], ['주의', '해수욕장 입구 광장은 2026년 12월 완공 예정 공사 중']],
         map: '旗津彩虹教堂',
@@ -485,7 +485,7 @@ export const DAYS: Day[] = [
         map: '打狗英國領事館文化園區',
       },
       {
-        t: '17:40', k: 'move', title: '보얼 예술특구로 · 경전철', path: [WALK, ST.c14, LRT, ST.c12, WALK],
+        t: '17:40', k: 'move', title: '보얼 예술특구로 · 경전철', photo: PHOTOS.lrt, path: [WALK, ST.c14, LRT, ST.c12, WALK],
         note: '하마싱(C14)에서 환상 경전철 2정거장. 경전철은 iPASS나 1회권만 돼요.', dur: '15m',
         ways: [
           { mode: 'lrt', label: '하마싱(C14) → 보얼다이(C12)', time: '약 15분', cost: 'NT$20', best: true, steps: ['영사관에서 하마싱역(C14)까지 도보 약 8분', '보얼다이(駁二大義) 하차 → 다강교 바로 앞'] },
@@ -567,14 +567,14 @@ export const DAYS: Day[] = [
         tip: '입장료는 따로 내요(해양생물박물관 NT$450, 어롼비 NT$60). 대만달러 현금을 넉넉히, 바람막이와 선크림을 챙기세요. 컨딩은 바람이 세요.',
       },
       {
-        t: '10:05', pos: POS.aquarium, k: 'sight', title: '국립 해양생물박물관 · 점심', zh: '國立海洋生物博物館',
+        t: '10:05', pos: POS.aquarium, k: 'sight', title: '국립 해양생물박물관 · 점심', photo: PHOTOS.aquarium, zh: '國立海洋生物博物館',
         note: '대만 최대 수족관. 수중 터널, 산호 왕국관, 벨루가와 펭귄을 보고 안에서 점심을 먹어요. 투어에서 가장 오래 머무는 곳이에요.', dur: '3h',
         facts: [['입장', 'NT$450 (투어 불포함, 당일 현장·온라인 구매)'], ['점심', '박물관 안 식당 · 자유식 (선택지가 적고 비싼 편)']],
         tip: '점심을 빨리 먹고 전시를 보면 시간이 넉넉해요.',
         map: '國立海洋生物博物館',
       },
       {
-        t: '13:40', pos: POS.shadao, k: 'sight', title: '사다오 조개모래 전시관 · 조개해변', zh: '砂島貝殼砂展示館',
+        t: '13:40', pos: POS.shadao, k: 'sight', title: '사다오 조개모래 전시관 · 조개해변', photo: PHOTOS.shadao, zh: '砂島貝殼砂展示館',
         note: '모래가 대부분 조개껍데기 가루로 된 하얀 해변. 보호 구역이라 모래를 가져가면 안 돼요.', dur: '50m',
         map: '砂島貝殼砂展示館',
       },
@@ -585,7 +585,7 @@ export const DAYS: Day[] = [
         map: '鵝鑾鼻公園',
       },
       {
-        t: '16:10', pos: POS.longpan, k: 'sight', title: '룽판 공원', zh: '龍磐公園',
+        t: '16:10', pos: POS.longpan, k: 'sight', title: '룽판 공원', photo: PHOTOS.longpan, zh: '龍磐公園',
         note: '태평양을 내려다보는 석회암 절벽과 초원. 후기에서 「해안 경치가 미친 곳」이라는 말이 나오는 곳이에요. 바람이 아주 세요.', dur: '30m',
         map: '龍磐公園',
       },
@@ -628,7 +628,7 @@ export const DAYS: Day[] = [
         map: '興隆居 高雄市前金區六合二路186號',
       },
       {
-        t: '09:00', pos: POS.sanfeng, k: 'sight', title: '싼펑궁', zh: '三鳳宮', optional: true,
+        t: '09:00', pos: POS.sanfeng, k: 'sight', title: '싼펑궁', photo: PHOTOS.sanfeng, zh: '三鳳宮', optional: true,
         note: '화려한 지붕 장식이 볼 만한 도교 사원. 숙소에서 걸어서 갈 수 있는 마지막 구경거리예요.', dur: '30m',
         facts: [['시간', '06:00–22:00 · 무료'], ['예절', '향을 피우는 사람 앞을 가로지르지 않기']],
         map: '三鳳宮 高雄市三民區',

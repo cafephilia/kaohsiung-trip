@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { NIGHT_FOODS, NIGHT_MARKETS, NIGHT_PHRASES, NIGHT_TIPS, TRIP_NIGHTS } from '../data/night'
+import { MARKET_PHOTOS, NIGHT_PHOTOS } from '../data/photos'
 import { formatTwd } from '../utils'
 import MapLink from './MapLink.vue'
 
@@ -42,6 +43,13 @@ const foods = computed(() =>
             </div>
           </summary>
           <div class="body">
+            <figure v-if="MARKET_PHOTOS[m.id]" class="nf-photo nm-photo">
+              <img :src="MARKET_PHOTOS[m.id].src" :alt="m.name" loading="lazy" decoding="async">
+              <figcaption>
+                <a :href="MARKET_PHOTOS[m.id].source" target="_blank" rel="noopener">{{ MARKET_PHOTOS[m.id].author }}</a> ·
+                <a :href="MARKET_PHOTOS[m.id].licenseUrl" target="_blank" rel="noopener">{{ MARKET_PHOTOS[m.id].license }}</a>
+              </figcaption>
+            </figure>
             <dl class="facts">
               <dt>영업</dt><dd>{{ m.hours }}</dd>
               <dt>가는 길</dt><dd>{{ m.access }}</dd>
@@ -65,6 +73,14 @@ const foods = computed(() =>
     </div>
     <ul class="nf-grid">
       <li v-for="f in foods" :key="f.zh" class="nf" :class="{ must: f.must }">
+        <figure v-if="NIGHT_PHOTOS[f.zh]" class="nf-photo">
+          <img :src="NIGHT_PHOTOS[f.zh].src" :alt="f.name" loading="lazy" decoding="async">
+          <figcaption :title="NIGHT_PHOTOS[f.zh].example">
+            <template v-if="NIGHT_PHOTOS[f.zh].example">예시 · </template>
+            <a :href="NIGHT_PHOTOS[f.zh].source" target="_blank" rel="noopener">{{ NIGHT_PHOTOS[f.zh].author }}</a> ·
+            <a :href="NIGHT_PHOTOS[f.zh].licenseUrl" target="_blank" rel="noopener">{{ NIGHT_PHOTOS[f.zh].license }}</a>
+          </figcaption>
+        </figure>
         <div class="nf-tags">
           <span v-if="f.must" class="nf-must">꼭 먹기</span>
           <span class="nf-cat">{{ f.cat }}</span>

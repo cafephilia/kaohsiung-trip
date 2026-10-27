@@ -1,4 +1,4 @@
-import { PHOTOS, SPOT_PHOTOS } from './data/photos'
+import { MARKET_PHOTOS, NIGHT_PHOTOS, PHOTOS, SPOT_PHOTOS } from './data/photos'
 
 // public/sw.js의 CACHE와 같은 이름이어야 한다
 const CACHE = 'kaohsiung-trip-v1'
@@ -25,7 +25,7 @@ async function warmCache() {
   const pageFiles = [...document.querySelectorAll<HTMLScriptElement | HTMLLinkElement>('script[src], link[rel="stylesheet"], link[rel="manifest"], link[rel="apple-touch-icon"]')]
     .map(el => ('src' in el && el.src) || (el as HTMLLinkElement).href)
     .filter(u => u.startsWith(base))
-  const photos = [...Object.values(PHOTOS), ...Object.values(SPOT_PHOTOS)].map(p => new URL(p.src, location.href).href)
+  const photos = [...Object.values(PHOTOS), ...Object.values(SPOT_PHOTOS), ...Object.values(NIGHT_PHOTOS), ...Object.values(MARKET_PHOTOS)].map(p => new URL(p.src, location.href).href)
   const urls = [...new Set([...pageFiles, base + 'icons/icon-192.png', ...photos, FONT_CSS])]
 
   const cache = await caches.open(CACHE)
