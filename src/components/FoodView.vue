@@ -2,23 +2,28 @@
 import { computed, ref } from 'vue'
 import { FOOD_SPOTS } from '../data/foodspots'
 import { SPOT_PHOTOS } from '../data/photos'
+import type { FoodSpot } from '../types'
 import Price from './Price.vue'
 import Badges from './Badges.vue'
 import MapLink from './MapLink.vue'
 import MenuButton from './MenuButton.vue'
 
 const ALL = '전체'
+// 술집뿐 아니라 '한잔하기 좋음' 뱃지가 붙은 식당까지 모아 보는 필터
+const DRINK = '🍺 한잔'
 const genre = ref(ALL)
 const area = ref(ALL)
 
 const uniq = (xs: string[]) => [ALL, ...new Set(xs)]
-const genres = computed(() => uniq(FOOD_SPOTS.map(s => s.genre)))
+const genres = computed(() => [ALL, DRINK, ...uniq(FOOD_SPOTS.map(s => s.genre)).slice(1)])
 const areas = computed(() => uniq(FOOD_SPOTS.map(s => s.area)))
 
+const matchGenre = (s: FoodSpot) =>
+  genre.value === ALL
+  || (genre.value === DRINK ? s.genre === '술집·바' || !!s.badges?.includes('한잔하기 좋음') : s.genre === genre.value)
+
 const spots = computed(() =>
-  FOOD_SPOTS.filter(s =>
-    (genre.value === ALL || s.genre === genre.value)
-    && (area.value === ALL || s.area === area.value)),
+  FOOD_SPOTS.filter(s => matchGenre(s) && (area.value === ALL || s.area === area.value)),
 )
 </script>
 
@@ -26,7 +31,7 @@ const spots = computed(() =>
   <section class="dayhead">
     <div class="overline"><span class="day-no">맛집</span><span>해산물 중심</span></div>
     <h2>가오슝 맛집</h2>
-    <p class="note food-lead">해산물집을 먼저 모으고, 우육면·오리고기 덮밥·빙수 같은 가오슝 대표 음식을 더했어요. 일정에 없는 곳도 있으니 시간이 남거나 계획이 바뀔 때 골라 가세요.</p>
+    <p class="note food-lead">해산물집을 먼저 모으고, 우육면·오리고기 덮밥·빙수 같은 가오슝 대표 음식을 더했어요. 외국인도 편하게 한잔할 수 있는 술집은 🍺 한잔 필터에 모았어요. 일정에 없는 곳도 있으니 시간이 남거나 계획이 바뀔 때 골라 가세요.</p>
   </section>
 
   <div class="filters" role="group" aria-label="종류">

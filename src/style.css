@@ -11,6 +11,7 @@
   --gold: #d18a1f;         /* 시즈완 노을빛 */
   --gold-soft: #fcefd9;
   --gold-ink: #8a560a;
+  --beer: #f6dfa6; --beer-ink: #6e4204;
   --on-gold: #1d1404;
   --warn: #b4432a;
   --warn-soft: #fbe7e1;
@@ -37,6 +38,7 @@
     --bg: #0b1014; --surface: #141b21; --ink: #e7eef2; --muted: #93a3ad; --line: #233039;
     --accent: #5bb8dc; --accent-soft: #15303d; --on-accent: #04202d;
     --gold: #e0b04f; --gold-soft: #33280f; --gold-ink: #f0c868;
+    --beer: #4d360c; --beer-ink: #f6d27e;
     --warn: #f0937a; --warn-soft: #3a2019;
     --hero: #10283a; --hero-ink: #edf4f8; --dock: rgba(20, 27, 33, .86); --shadow: none;
     --k-flight: #7c9cf0; --k-move: #9aa8b6; --k-sight: #4fc2a9; --k-shop: #ec7fa9; --k-food: #f0ad45; --k-stay: #a891ee;
@@ -47,6 +49,7 @@
   --bg: #0b1014; --surface: #141b21; --ink: #e7eef2; --muted: #93a3ad; --line: #233039;
   --accent: #5bb8dc; --accent-soft: #15303d; --on-accent: #04202d;
   --gold: #e0b04f; --gold-soft: #33280f; --gold-ink: #f0c868;
+  --beer: #4d360c; --beer-ink: #f6d27e;
   --warn: #f0937a; --warn-soft: #3a2019;
   --hero: #10283a; --hero-ink: #edf4f8; --dock: rgba(20, 27, 33, .86); --shadow: none;
   --k-flight: #7c9cf0; --k-move: #9aa8b6; --k-sight: #4fc2a9; --k-shop: #ec7fa9; --k-food: #f0ad45; --k-stay: #a891ee;
@@ -461,6 +464,8 @@ table.tbl td:last-child { text-align: right; font-weight: 700; font-variant-nume
 .badge.rec { background: var(--gold-soft); color: var(--gold-ink); }
 .badge.no { border: 1px solid var(--line); color: var(--muted); padding: 0 6px; }
 .badge.queue { background: var(--warn-soft); color: var(--warn); }
+.badge.drink { background: var(--beer); color: var(--beer-ink); }
+.badge + .badge { margin-left: 4px; }
 .meta { flex-wrap: wrap; row-gap: 4px; }
 .meta .chev { order: 9; }
 

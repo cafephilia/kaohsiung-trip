@@ -18,7 +18,7 @@ export interface Place {
 }
 
 /** 예약·대기 상태 배지 */
-export type Badge = '예약 필수' | '예약 추천' | '예약 불가' | '줄 김'
+export type Badge = '예약 필수' | '예약 추천' | '예약 불가' | '줄 김' | '한잔하기 좋음'
 
 export interface Alt {
   title: string
@@ -209,7 +209,7 @@ export interface MenuBoard {
   sources?: string[]
 }
 
-export type FoodGenre = '해산물' | '우육면·면' | '대만 가정식·밥' | '아침' | '디저트·음료' | '길거리 음식' | '훠궈·고기'
+export type FoodGenre = '해산물' | '우육면·면' | '대만 가정식·밥' | '아침' | '디저트·음료' | '길거리 음식' | '훠궈·고기' | '술집·바'
 export type FoodArea = '숙소 근처' | '옌청·보얼' | '치진' | '시즈완' | '쭤잉·롄츠탄' | '기타'
 
 /** SNS·유튜브에서 유명한 맛집 */
