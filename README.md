@@ -11,10 +11,10 @@
 |---|---|---|
 | 1일차 12/10 목 | 도착, 메이리다오와 류허 야시장 | 김포 12:00 중화항공 CI185 → 가오슝 14:10 → MRT로 숙소 → 빛의 돔 → 라오장 홍차우유 → 아이허 노을·미가오 → 류허 야시장 해산물 |
 | 2일차 12/11 금 | 용호탑, 치진 해산물, 영국영사관 노을, 보얼 | 첸진 루러우판 → 롄츠탄 용호탑 → 구산–치진 페리 → 치허우 등대 → 치진 해산물 점심 → 바다의 빙수 → 영국영사관 노을 → 보얼·다강교 → 자오밍 해산 저녁 |
-| 3일차 12/12 토 | 컨딩 일일 버스투어 | 싱룽쥐 탕바오 → 08:10 메이리다오역 6번 출구 집합 → 해양생물박물관 → 사다오 조개해변 → 어롼비 등대 → 룽판 공원 → 19:00 메이리다오 → 류허 야시장 2차 |
-| 4일차 12/13 일 | 귀국 | 싱룽쥐 아침 → 싼펑궁 → 체크아웃 → MRT로 공항 → 트리니티 TW652 14:05 → 김포 17:55 |
+| 3일차 12/12 토 | 타이난 한국어 일일투어 | 싱룽쥐 탕바오 → 09:50 메이리다오역 빛의 돔 집합 → 안핑구바오·옛거리 → 안핑수우 → 쓰차오 녹색터널 보트 → 징짜이자오 염전 일몰 → 19:30 메이리다오 → 류허 야시장 2차 |
+| 4일차 12/13 일 | 귀국 | 호텔 조식 또는 싱룽쥐 → 싼펑궁 → 체크아웃 → MRT로 공항 → 트리니티 TW652 14:05 → 김포 17:55 |
 
-후기가 많은 컨딩 단체투어가 월·목·토만 운행해서 토요일(3일차)에 투어를 탑니다. 같은 코스의 오늘두여행(한국어 가이드, 4명이면 확정)과 路特旅行(후기 가장 많음, 한국어 15명 미만이면 영어)을 비교해 두었고, 인원 미달로 취소되면 프라이빗 차량으로 바꿉니다.
+메이리다오역에서 출발하는 한국어 단체투어 중 금·토에 운행하는 것을 비교해서, 2일차 시내 일정과 겹치지 않는 새진여행사 타이난 일일투어(클룩 22232·마이리얼트립 3441321)를 토요일(3일차)에 탑니다. 최소 12명이라 인원 미달로 취소되면 마이리얼트립 한국어 프라이빗 투어로 바꿉니다.
 
 ## 기능
 
@@ -102,10 +102,10 @@ npm run build   # 타입 검사 + dist 빌드
 | 옛 영국영사관 | Chainwit. | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Former_British_Consul%27s_Residence_at_Takow,_Former_British_Consulate_at_Takow_-_Kaohsiung_(2026)_-_img_01.jpg) |
 | 가오슝 경전철 | Takeshi Aida | [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0) | [Commons](https://commons.wikimedia.org/wiki/File:Kaohsiung_Light_Rail_20190108.jpg) |
 | 보얼 예술특구 | Jonashtand | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:202407_Penglai_warehouses,_Pier-2_Art_Center,_Kaohsiung.jpg) |
-| 국립 해양생물박물관 | lienyuan lee | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0) | [Commons](https://commons.wikimedia.org/wiki/File:NMMBA_Pacific_Dabbling_Plaza_20130201b.jpg) |
-| 사다오 해변 | Tbatb | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Scene_at_Shadao,_Pingtung_04.jpg) |
-| 어롼비 등대 | Suicasmo | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Eluanbi_Lighthouse_20240918-3.jpg) |
-| 룽판 공원 | WEI, WAN-CHEN | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Longpan_Park%EF%BC%88WEI,_WAN-CHEN%EF%BC%89%EF%BC%8D%E9%BE%8D%E7%A3%90%E5%85%AC%E5%9C%92.jpg) |
+| 타이난 안핑구바오 | CEphoto, Uwe Aranas | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0) | [Commons](https://commons.wikimedia.org/wiki/File:Tainan_Taiwan_Fort-Zeelandia-01.jpg) |
+| 타이난 안핑수우 | Mk2010 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Anping_Tree_House,_Tainan_(Taiwan).jpg) |
+| 쓰차오 녹색터널 | lienyuan lee | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0) | [Commons](https://commons.wikimedia.org/wiki/File:%E5%9B%9B%E8%8D%89%E7%B6%A0%E8%89%B2%E9%9A%A7%E9%81%93_Sicao_Green_Tunnel_-_panoramio_(3).jpg) |
+| 징짜이자오 타일 염전 | MW2019 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Jingzaijiao_Tile-paved_Salt_Fields_,_Tainan_city_,_Taiwan.jpg) |
 | 싼펑궁 | Chainwit. | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Kaohsiung_-_Sunfong_Temple_%E4%B8%89%E9%B3%B3%E5%AE%AE_(2026)_-_img_44.jpg) |
 | 안핑 (타이난) | Mk2010 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Anping_Small_Fort,_Anping_District,_Tainan_City_(Taiwan).jpg) |
 | 가오슝 뮤직센터 | Suicasmo | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0) | [Commons](https://commons.wikimedia.org/wiki/File:Kaohsiung_Music_Center_20240919-1.jpg) |
