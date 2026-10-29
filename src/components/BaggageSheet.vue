@@ -24,7 +24,7 @@ onBeforeUnmount(() => {
         <div class="sheet-titles">
           <div class="sheet-eyebrow bag-eyebrow">보안검색 전에</div>
           <h2 id="bag-title">수하물 규정</h2>
-          <div class="zh sub">제주항공 · 트리니티항공 · 김포 ↔ 가오슝 국제선</div>
+          <div class="zh sub">중화항공 · 트리니티항공 · 김포 ↔ 가오슝 국제선</div>
         </div>
         <button ref="closeBtn" class="sheet-close" type="button" aria-label="닫기" @click="emit('close')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">

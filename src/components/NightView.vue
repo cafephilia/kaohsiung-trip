@@ -19,7 +19,7 @@ const foods = computed(() =>
   <section class="dayhead">
     <div class="overline"><span class="day-no">야시장</span><span>특별 코너</span></div>
     <h2>야시장에서 꼭 먹어 볼 음식</h2>
-    <p class="note food-lead">숙소 바로 옆 류허 야시장과 현지인이 많이 가는 루이펑 야시장을 중심으로 골랐어요. 여러 가지를 조금씩 나눠 먹는 게 야시장을 즐기는 방법이에요.</p>
+    <p class="note food-lead">숙소에서 걸어서 7분인 류허 야시장과 현지인이 많이 가는 루이펑 야시장을 중심으로 골랐어요. 여러 가지를 조금씩 나눠 먹는 게 야시장을 즐기는 방법이에요.</p>
   </section>
 
   <div class="sec">
