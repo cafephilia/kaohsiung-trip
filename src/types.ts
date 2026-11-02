@@ -209,7 +209,7 @@ export interface MenuBoard {
   sources?: string[]
 }
 
-export type FoodGenre = '해산물' | '우육면·면' | '대만 가정식·밥' | '아침' | '디저트·음료' | '길거리 음식' | '훠궈·고기' | '술집·바'
+export type FoodGenre = '해산물' | '우육면·면' | '대만 가정식·밥' | '아침' | '디저트·음료' | '길거리 음식' | '훠궈·고기' | '러차오' | '술집·바'
 export type FoodArea = '숙소 근처' | '옌청·보얼' | '치진' | '시즈완' | '쭤잉·롄츠탄' | '기타'
 
 /** SNS·유튜브에서 유명한 맛집 */
