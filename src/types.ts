@@ -279,3 +279,36 @@ export interface NightFood {
 
 /** 주문할 때 쓰는 말 [한국어 뜻, 중국어, 한글 발음] */
 export type Phrase = [ko: string, zh: string, sound: string]
+
+/** 쇼핑 탭의 기념품·편의점·술 한 가지 */
+export interface ShopItem {
+  name: string
+  zh: string
+  cat: string
+  desc: string
+  /** 보통 가격. 숫자면 NT$와 원화를 붙여 보여준다 */
+  price: string
+  where: string
+  /** 도수 · 용량 (술) */
+  abv?: string
+  size?: string
+  /** 통관·무게 등 미리 알면 좋은 점 */
+  warn?: string
+  must?: boolean
+  sources?: string[]
+}
+
+/** 쇼핑 탭의 가게 */
+export interface ShopPlace {
+  id: string
+  name: string
+  zh: string
+  kind: string
+  hours: string
+  closed: string
+  access: string
+  fromHotel: string
+  tips: string[]
+  map: string
+  sources?: string[]
+}

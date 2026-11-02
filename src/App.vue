@@ -6,6 +6,7 @@ import { localDate, mapUrl, openBaggageKey, openMenuKey, openPackKey, openTaxiKe
 import DayView from './components/DayView.vue'
 import FoodView from './components/FoodView.vue'
 import NightView from './components/NightView.vue'
+import ShopView from './components/ShopView.vue'
 import InfoView from './components/InfoView.vue'
 import MenuSheet from './components/MenuSheet.vue'
 import PackSheet from './components/PackSheet.vue'
@@ -19,6 +20,7 @@ const tabs = [
   ...DAYS.map(d => ({ id: d.id, label: d.label, short: d.short, isToday: d.date === today })),
   { id: 'food', label: '맛집', short: '해산물', isToday: false },
   { id: 'night', label: '야시장', short: '먹거리', isToday: false },
+  { id: 'shop', label: '쇼핑', short: '기념품', isToday: false },
   { id: 'info', label: '정보', short: '준비', isToday: false },
 ]
 const isTab = (id: string | null): id is string => !!id && tabs.some(t => t.id === id)
@@ -133,6 +135,7 @@ onBeforeUnmount(() => {
       <DayView v-if="activeDay" :key="activeDay.id" :day="activeDay" />
       <FoodView v-else-if="active === 'food'" />
       <NightView v-else-if="active === 'night'" />
+      <ShopView v-else-if="active === 'shop'" />
       <InfoView v-else />
     </main>
 
