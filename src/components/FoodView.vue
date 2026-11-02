@@ -57,6 +57,7 @@ const spots = computed(() =>
           <div class="meta">
             <span class="kind">{{ s.genre }}</span>
             <span class="dur">{{ s.area }}</span>
+            <span v-if="s.userPick" class="pick-pill">내가 고른 곳</span>
             <span v-if="s.michelin" class="mich-pill">미쉐린</span>
             <span v-if="s.youtuber" class="yt-pill">한국인 추천</span>
             <Badges :badges="s.badges" />
