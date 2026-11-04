@@ -14,16 +14,24 @@ import BaggageSheet from './components/BaggageSheet.vue'
 import TaxiCard from './components/TaxiCard.vue'
 
 const TAB_KEY = 'khh-tab'
+const SECTION_KEY = 'khh-section'
 const today = localDate()
 
+// 정보 탭 안의 내부 탭. 주소 해시는 예전처럼 #info·#food·#night·#shop을 쓴다
+const sections = [
+  { id: 'info', label: '정보' },
+  { id: 'food', label: '맛집' },
+  { id: 'night', label: '야시장' },
+  { id: 'shop', label: '쇼핑' },
+]
+const isSection = (id: string | null): id is string => !!id && sections.some(s => s.id === id)
+
+// 하단 바: 날짜 4개 + 정보
 const tabs = [
   ...DAYS.map(d => ({ id: d.id, label: d.label, short: d.short, isToday: d.date === today })),
-  { id: 'food', label: '맛집', short: '해산물', isToday: false },
-  { id: 'night', label: '야시장', short: '먹거리', isToday: false },
-  { id: 'shop', label: '쇼핑', short: '기념품', isToday: false },
-  { id: 'info', label: '정보', short: '준비', isToday: false },
+  { id: 'info', label: '정보', short: '맛집·쇼핑', isToday: false },
 ]
-const isTab = (id: string | null): id is string => !!id && tabs.some(t => t.id === id)
+const isTab = (id: string | null): id is string => !!id && (DAYS.some(d => d.id === id) || isSection(id))
 
 /** 주소의 #d2 같은 해시 → 여행 당일 → 마지막으로 본 탭 → 1일차 */
 function initialTab(): string {
@@ -37,6 +45,13 @@ function initialTab(): string {
 
 const active = ref(initialTab())
 const activeDay = computed(() => DAYS.find(d => d.id === active.value))
+
+/** 하단 바의 정보 버튼을 누르면 마지막으로 본 내부 탭을 연다 */
+const lastSection = ref(isSection(active.value) ? active.value : (store.get(SECTION_KEY) ?? 'info'))
+const isTabSelected = (id: string) => (id === 'info' ? isSection(active.value) : active.value === id)
+const selectTab = (id: string) => {
+  active.value = id === 'info' ? (isSection(lastSection.value) ? lastSection.value : 'info') : id
+}
 
 /** 출발 전에는 D-day, 여행 중에는 몇 일차인지, 다녀온 뒤에는 완료 표시 */
 const tripStatus = (() => {
@@ -52,6 +67,10 @@ const tripStatus = (() => {
 // 탭을 누르면 주소의 해시도 맞춰 둔다. replaceState는 hashchange를 일으키지 않고 방문 기록도 쌓지 않는다
 watch(active, id => {
   store.set(TAB_KEY, id)
+  if (isSection(id)) {
+    lastSection.value = id
+    store.set(SECTION_KEY, id)
+  }
   if (location.hash.slice(1) !== id) history.replaceState(null, '', '#' + id)
   window.scrollTo({ top: 0 })
 })
@@ -133,10 +152,26 @@ onBeforeUnmount(() => {
 
     <main id="view">
       <DayView v-if="activeDay" :key="activeDay.id" :day="activeDay" />
-      <FoodView v-else-if="active === 'food'" />
-      <NightView v-else-if="active === 'night'" />
-      <ShopView v-else-if="active === 'shop'" />
-      <InfoView v-else />
+      <template v-else>
+        <div class="subtabs" role="tablist" aria-label="정보">
+          <button
+            v-for="s in sections"
+            :id="'sub-' + s.id"
+            :key="s.id"
+            class="subtab"
+            role="tab"
+            type="button"
+            :aria-selected="active === s.id"
+            @click="active = s.id"
+          >
+            {{ s.label }}
+          </button>
+        </div>
+        <FoodView v-if="active === 'food'" />
+        <NightView v-else-if="active === 'night'" />
+        <ShopView v-else-if="active === 'shop'" />
+        <InfoView v-else />
+      </template>
     </main>
 
     <p class="foot">
@@ -154,9 +189,9 @@ onBeforeUnmount(() => {
         class="tab"
         role="tab"
         type="button"
-        :aria-selected="active === t.id"
+        :aria-selected="isTabSelected(t.id)"
         aria-controls="view"
-        @click="active = t.id"
+        @click="selectTab(t.id)"
       >
         <b>{{ t.label }}</b>
         <span>{{ t.short }}</span>
