@@ -448,6 +448,10 @@ table.tbl td:last-child { text-align: right; font-weight: 700; font-variant-nume
 }
 .fchip[aria-pressed="true"] { background: var(--k-food); border-color: var(--k-food); color: var(--surface); }
 .fchip.area[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+/* 마우스로는 가로 스크롤이 잘 안 돼서 PC에서는 칩과 동선을 여러 줄로 감싼다 */
+@media (hover: hover) and (pointer: fine) {
+  .filters, .route { flex-wrap: wrap; overflow-x: visible; }
+}
 .spots { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 10px; }
 .spot { --kc: var(--k-food); }
 .spot .note { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
