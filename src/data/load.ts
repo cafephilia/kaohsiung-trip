@@ -54,6 +54,7 @@ const SLOTS: Record<string, object> = {
   spotPhotos: photos.SPOT_PHOTOS, nightPhotos: photos.NIGHT_PHOTOS, marketPhotos: photos.MARKET_PHOTOS,
   souvenirs: shopping.SOUVENIRS, shopPlaces: shopping.SHOP_PLACES, shopTips: shopping.SHOP_TIPS,
   cvsItems: shopping.CVS_ITEMS, drinks: shopping.DRINKS, drinkTips: shopping.DRINK_TIPS,
+  whiskies: shopping.WHISKIES, whiskyTips: shopping.WHISKY_TIPS, whiskyBaskets: shopping.WHISKY_BASKETS,
 }
 
 function apply(p: Payload) {

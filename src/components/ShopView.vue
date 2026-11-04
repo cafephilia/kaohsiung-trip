@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { CVS_ITEMS, DRINK_TIPS, DRINKS, SHOP_PLACES, SHOP_TIPS, SOUVENIRS } from '../data/shopping'
+import { CVS_ITEMS, DRINK_TIPS, DRINKS, SHOP_PLACES, SHOP_TIPS, SOUVENIRS, WHISKIES, WHISKY_BASKETS, WHISKY_TIPS } from '../data/shopping'
 import MapLink from './MapLink.vue'
 import ShopGrid from './ShopGrid.vue'
+import WhiskyList from './WhiskyList.vue'
 </script>
 
 <template>
@@ -68,6 +69,21 @@ import ShopGrid from './ShopGrid.vue'
   <div class="sec">
     <h3>대만 맥주 · 술 <span class="prog">{{ DRINKS.length }}</span></h3>
     <ShopGrid :items="DRINKS" must-label="추천" label="술 종류" />
+  </div>
+
+  <div v-if="WHISKIES.length" class="sec">
+    <h3>카발란 위스키 · 한국 가격과 비교 <span class="prog">{{ WHISKIES.length }}</span></h3>
+    <WhiskyList />
+  </div>
+
+  <div v-if="WHISKY_BASKETS.length || WHISKY_TIPS.length" class="sec">
+    <h3>면세 한도 안에서 사면</h3>
+    <div class="box">
+      <ul>
+        <li v-for="t in WHISKY_BASKETS" :key="t">{{ t }}</li>
+        <li v-for="t in WHISKY_TIPS" :key="t">{{ t }}</li>
+      </ul>
+    </div>
   </div>
 
   <div class="sec">

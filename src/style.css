@@ -605,3 +605,13 @@ table.tbl td:last-child { text-align: right; font-weight: 700; font-variant-nume
   font-size: 14px; font-weight: 700; color: var(--muted);
 }
 .subtab[aria-selected="true"] { background: var(--accent); color: var(--on-accent); }
+
+/* 카발란 위스키: 대만·한국 가격 비교 */
+.wk-compare { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; margin: 6px 0 0; padding: 8px 10px; border-radius: var(--r-md); background: var(--accent-soft); font-size: 13px; }
+.wk-compare dt { font-weight: 700; color: var(--muted); }
+.wk-compare dd { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.wk-compare .price { flex-direction: row; align-items: baseline; gap: 6px; }
+.wk-price { font-weight: 800; font-variant-numeric: tabular-nums; }
+.wk-krw { font-weight: 700; font-variant-numeric: tabular-nums; }
+.wk-where { font-size: 11.5px; color: var(--muted); }
+.wk-saving { font-size: 13px; font-weight: 700; color: var(--k-food); }

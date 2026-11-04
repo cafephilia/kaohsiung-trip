@@ -329,3 +329,25 @@ export interface Embassy {
   addr: string
   map: string
 }
+
+/** 쇼핑 탭 카발란 위스키 코너: 대만 가격과 한국 가격 비교 */
+export interface Whisky {
+  name: string
+  zh: string
+  en: string
+  abv: string
+  size: string
+  desc: string
+  /** 어떤 사람에게 맞는지 */
+  suits: string
+  /** 대만 가격 (NT$ 숫자 문자열) */
+  twd: string
+  twdWhere: string
+  /** 한국 가격 (₩가 붙은 문자열) 또는 '미확인' */
+  krw: string
+  krwWhere: string
+  /** 한국보다 얼마나 싼지 한 줄 */
+  saving: string
+  must?: boolean
+  sources?: string[]
+}
