@@ -83,7 +83,7 @@ npm run dev     # 로컬 개발 서버
 npm run build   # 타입 검사 + dist 빌드
 ```
 
-`main`에 push하면 GitHub Actions가 빌드해서 GitHub Pages에 배포합니다.
+`main`에 push하면 GitHub Actions가 빌드해서 GitHub Pages에 배포합니다. `worker/`만 바뀐 커밋은 앱이 그대로라 빌드하지 않습니다.
 
 Worker는 따로 배포합니다. Cloudflare에 로그인(`npx wrangler login`)한 컴퓨터에서 `worker` 폴더로 가서 실행합니다.
 

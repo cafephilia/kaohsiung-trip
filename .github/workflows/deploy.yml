@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    # worker/(D1 데이터·R2 사진·Worker 코드)만 바뀐 커밋은 앱이 그대로라 다시 빌드하지 않는다
+    paths-ignore:
+      - 'worker/**'
   workflow_dispatch:
 
 permissions:
