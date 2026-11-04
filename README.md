@@ -36,16 +36,23 @@
 
 ## 구조
 
+데이터와 사진은 앱에 들어 있지 않고 Cloudflare에 있습니다. 일정·맛집·메뉴판 같은 정보는 **D1**, 사진 파일은 **R2**에 두고, **Worker**(`https://khh-api.cafephilia.workers.dev`)가 내려줍니다. 앱은 시작할 때 `/v1/data` 하나로 모든 데이터를 받아 화면을 그리고, 받은 데이터를 휴대폰에 저장해 인터넷이 없을 때 그 저장본으로 엽니다.
+
 ```
+worker/                Cloudflare Worker (API)
+  src/index.ts         GET /v1/data (D1 데이터, 사진 주소 채움) · GET /photos/:file (R2)
+  schema.sql           D1 표: docs · days · spots · menus · photos
+  seed/                D1에 넣는 원본 데이터 (여기를 고친다)
+    docs.json          날짜별 일정(days)·숙소·항공·체크리스트·교통·야시장·쇼핑 등
+    spots.json         맛집 목록 (순서대로 보여줌)
+    menus.json         맛집·술집 45곳 메뉴판
+    photos.json        사진 작가·라이선스 (파일 이름은 R2 키)
+  photos/              R2에 올리는 사진 파일
+  scripts/             seed.sql 만들기 · 사진 올리기
 src/
-  data/trip.ts        일정, 항공편, 체크리스트, 수하물, 교통 요금, 연락처
-  data/common.ts      짐 목록, 처음 대만 여행 팁, 유용한 앱
-  data/night.ts       야시장, 야시장 음식, 주문 표현
-  data/shopping.json  기념품, 가게, 편의점, 대만 술 (shopping.ts에서 불러옴)
-  data/foodspots.json 맛집 데이터
-  data/menus.json     맛집·술집 45곳 메뉴판 (한국어 이름, 번체 중국어, NT$ 가격)
-  data/photos.ts      관광지 사진과 출처
-  types.ts            데이터 타입
+  data/load.ts         API에서 데이터를 받아 아래 그릇을 채우고 NT$에 원화를 붙임
+  data/trip.ts 등      화면이 import하는 데이터 그릇 (trip·common·night·shopping·foodspots·menus·photos)
+  types.ts             데이터 타입
   App.vue             상단 요약 카드, 하단 탭 바, 탭 전환
   components/
     DayView.vue       하루 일정 헤더와 타임라인
@@ -62,7 +69,7 @@ src/
     MenuSheet.vue     메뉴판 창
 ```
 
-일정을 고칠 때는 `src/data/trip.ts`만 수정하면 됩니다. 동선 지도에 장소를 넣으려면 일정에 `pos: POS.이름`을 붙이고, 역·선착장 단위 경로는 `path: [WALK, ST.r10, ORANGE, ST.o1, WALK]`처럼 수단과 역을 번갈아 적습니다.
+일정·맛집·메뉴판을 고칠 때는 `worker/seed/*.json`을 고치고 `worker`에서 `npm run seed`를 실행하면 됩니다. 앱을 다시 빌드할 필요가 없고, 1분 안에(API 캐시 60초) 반영됩니다. 사진은 `{ "$photo": "키" }`로 `photos.json`의 키를 가리키고, 새 사진은 `worker/photos`에 넣고 `npm run photos 파일이름.jpg`로 올립니다. 동선 지도 좌표는 일정 항목의 `pos: [위도, 경도]`, 역·선착장 단위 경로는 `path`에 수단과 역을 번갈아 적습니다.
 
 나고야 여행 앱(`nagoya-trip`)의 구조를 바탕으로 만들었습니다.
 
@@ -78,6 +85,17 @@ npm run build   # 타입 검사 + dist 빌드
 
 `main`에 push하면 GitHub Actions가 빌드해서 GitHub Pages에 배포합니다.
 
+Worker는 따로 배포합니다. Cloudflare에 로그인(`npx wrangler login`)한 컴퓨터에서 `worker` 폴더로 가서 실행합니다.
+
+```bash
+npm install
+npm run seed     # seed/*.json → seed.sql → D1 (표를 지우고 다시 넣음)
+npm run photos   # photos/ → R2 (파일 이름을 주면 그 파일만)
+npm run deploy   # Worker 코드 배포
+```
+
+로컬에서 다른 API로 띄우려면 `VITE_API_BASE` 환경 변수에 주소를 넣습니다.
+
 ## 참고
 
 - 정보 확인일은 2026-10-27입니다. 영업시간과 가격은 바뀔 수 있습니다.
@@ -87,7 +105,7 @@ npm run build   # 타입 검사 + dist 빌드
 
 ## 사진 출처
 
-사진은 모두 위키미디어 커먼즈의 자유 라이선스 사진을 960px로 줄여 `public/photos`에 넣었습니다. 음식 사진은 대부분 해당 가게가 아닌 곳에서 찍은 예시이고, 앱에도 "예시"라고 표시했습니다.
+사진은 모두 위키미디어 커먼즈의 자유 라이선스 사진을 960px로 줄여 Cloudflare R2에 올렸습니다(원본 파일은 `worker/photos`). 음식 사진은 대부분 해당 가게가 아닌 곳에서 찍은 예시이고, 앱에도 "예시"라고 표시했습니다.
 
 ### 관광지·교통
 

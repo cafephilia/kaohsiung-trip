@@ -1,0 +1,14 @@
+name = "khh-api"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+
+# 일정·맛집·메뉴판 등 앱 데이터
+[[d1_databases]]
+binding = "DB"
+database_name = "khh-trip"
+database_id = "3e3097a2-8d27-4f3a-8e35-a4ec88820c9a"
+
+# 사진 파일
+[[r2_buckets]]
+binding = "PHOTOS"
+bucket_name = "khh-trip-photos"

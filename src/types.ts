@@ -312,3 +312,20 @@ export interface ShopPlace {
   map: string
   sources?: string[]
 }
+
+/** 상단 요약과 정보 탭에 보여줄 숙소 정보 */
+export interface Stay {
+  name: string
+  nights: string
+  checkIn: string
+  checkOut: string
+  station: string
+  map: string
+}
+
+/** 대표부 주소 */
+export interface Embassy {
+  label: string
+  addr: string
+  map: string
+}

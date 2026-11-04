@@ -1,7 +1,8 @@
 // 오프라인 지원 서비스 워커.
 // 페이지(HTML)는 인터넷이 되면 항상 새로 받고, 안 되면 저장본을 보여준다.
-// 해시가 붙은 JS·CSS와 사진은 한 번 받으면 저장본을 쓴다.
-const CACHE = 'kaohsiung-trip-v1'
+// 해시가 붙은 JS·CSS와 사진(Cloudflare R2, API 주소의 /photos/)은 한 번 받으면 저장본을 쓴다.
+const CACHE = 'kaohsiung-trip-v2'
+const API = 'https://khh-api.cafephilia.workers.dev'
 const SCOPE = self.registration.scope
 
 self.addEventListener('install', event => {
@@ -39,6 +40,18 @@ self.addEventListener('fetch', event => {
 
   // 같은 사이트의 JS·CSS·사진·아이콘: 저장본 우선
   if (req.url.startsWith(SCOPE)) {
+    event.respondWith((async () => {
+      const hit = await caches.match(req)
+      if (hit) return hit
+      const res = await fetch(req)
+      if (res.ok) (await caches.open(CACHE)).put(req, res.clone())
+      return res
+    })())
+    return
+  }
+
+  // 사진(R2): 저장본 우선
+  if (url.origin === API && url.pathname.startsWith('/photos/')) {
     event.respondWith((async () => {
       const hit = await caches.match(req)
       if (hit) return hit

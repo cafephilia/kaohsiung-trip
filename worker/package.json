@@ -1,0 +1,14 @@
+{
+  "name": "khh-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "seed": "node scripts/build-seed.mjs && wrangler d1 execute khh-trip --remote --file seed.sql",
+    "photos": "node scripts/upload-photos.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.157.0"
+  }
+}

@@ -1,0 +1,416 @@
+[
+  {
+    "key": "airport",
+    "file": "airport.jpg",
+    "author": "龍本",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:高雄國際機場.JPG",
+    "example": "2010년에 찍은 국제선 터미널이에요"
+  },
+  {
+    "key": "mrt",
+    "file": "mrt.jpg",
+    "author": "chia ying Yang",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kaohsiung_MRT_Train.jpg",
+    "example": null
+  },
+  {
+    "key": "dome",
+    "file": "dome.jpg",
+    "author": "allanlau2000",
+    "license": "CC0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source": "https://commons.wikimedia.org/wiki/File:Dome_of_Light_at_Formosa_Boulevard_Station.jpg",
+    "example": null
+  },
+  {
+    "key": "pier2",
+    "file": "pier2.jpg",
+    "author": "Jonashtand",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:202407_Penglai_warehouses,_Pier-2_Art_Center,_Kaohsiung.jpg",
+    "example": null
+  },
+  {
+    "key": "loveriver",
+    "file": "loveriver.jpg",
+    "author": "Graphium",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Love_River_(%E7%88%B1%E6%B2%B3),_Kaohsiung,_Taiwan.jpg",
+    "example": null
+  },
+  {
+    "key": "cijin",
+    "file": "cijin.jpg",
+    "author": "Jonashtand",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:202001_Views_from_ferry_from_Gushan_to_Cijin,_Kaohsiung_20.jpg",
+    "example": null
+  },
+  {
+    "key": "lighthouse",
+    "file": "lighthouse.jpg",
+    "author": "大頭家族",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kaohsiung_Lighthouse_with_clear_skies.jpg",
+    "example": null
+  },
+  {
+    "key": "cijinseafood",
+    "file": "cijinseafood.jpg",
+    "author": "Changlc",
+    "license": "퍼블릭 도메인",
+    "licenseUrl": "https://commons.wikimedia.org/wiki/Template:PD-self",
+    "source": "https://commons.wikimedia.org/wiki/File:Seafood_chijin.jpg",
+    "example": "2005년 치진 해산물 가게 진열대 사진이에요"
+  },
+  {
+    "key": "cijinbeach",
+    "file": "cijinbeach.jpg",
+    "author": "fullfen666",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:【高雄景點】旗津彩虹教堂_(30663971394).jpg",
+    "example": null
+  },
+  {
+    "key": "consulate",
+    "file": "consulate.jpg",
+    "author": "Chainwit.",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Former_British_Consul%27s_Residence_at_Takow,_Former_British_Consulate_at_Takow_-_Kaohsiung_(2026)_-_img_01.jpg",
+    "example": null
+  },
+  {
+    "key": "lrt",
+    "file": "lrt.jpg",
+    "author": "Takeshi Aida",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kaohsiung_Light_Rail_20190108.jpg",
+    "example": null
+  },
+  {
+    "key": "lotuspond",
+    "file": "lotuspond.jpg",
+    "author": "Zairon",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kaohsiung_Lotus_Pond_Frühling-_&_Herbst-Pavillon_04.jpg",
+    "example": null
+  },
+  {
+    "key": "liuhe",
+    "file": "liuhe.jpg",
+    "author": "Chainwit.",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kaohsiung-_Liuhe_Night_Market_-_%E5%85%AD%E5%90%88%E5%A4%9C%E5%B8%82_(2026)_-_img_01.jpg",
+    "example": null
+  },
+  {
+    "key": "ruifeng",
+    "file": "ruifeng.jpg",
+    "author": "Bahnfrend",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ruifeng_Night_Market,_2026_(03).jpg",
+    "example": null
+  },
+  {
+    "key": "anpingfort",
+    "file": "anpingfort.jpg",
+    "author": "CEphoto, Uwe Aranas",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tainan_Taiwan_Fort-Zeelandia-01.jpg",
+    "example": null
+  },
+  {
+    "key": "treehouse",
+    "file": "treehouse.jpg",
+    "author": "Mk2010",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Anping_Tree_House,_Tainan_(Taiwan).jpg",
+    "example": null
+  },
+  {
+    "key": "sicao",
+    "file": "sicao.jpg",
+    "author": "lienyuan lee",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:四草綠色隧道_Sicao_Green_Tunnel_-_panoramio_(3).jpg",
+    "example": null
+  },
+  {
+    "key": "saltfield",
+    "file": "saltfield.jpg",
+    "author": "MW2019",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Jingzaijiao_Tile-paved_Salt_Fields_,_Tainan_city_,_Taiwan.jpg",
+    "example": null
+  },
+  {
+    "key": "sanfeng",
+    "file": "sanfeng.jpg",
+    "author": "Chainwit.",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kaohsiung_-_Sunfong_Temple_三鳳宮_(2026)_-_img_44.jpg",
+    "example": null
+  },
+  {
+    "key": "anping",
+    "file": "anping.jpg",
+    "author": "Mk2010",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Anping_Small_Fort,_Anping_District,_Tainan_City_(Taiwan).jpg",
+    "example": null
+  },
+  {
+    "key": "musiccenter",
+    "file": "musiccenter.jpg",
+    "author": "Suicasmo",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kaohsiung_Music_Center_20240919-1.jpg",
+    "example": null
+  },
+  {
+    "key": "porridge",
+    "file": "porridge.jpg",
+    "author": "bryan... from Taipei",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Food_滷肉飯,_海鮮粥,_海產粥,_煎魚肚,_煎魚腸,_肉燥油條,_滷油豆腐,_滷丸,_香腸,_荷包蛋,_南明肉燥飯,_自強夜市,_高雄_(15749506952).jpg",
+    "example": "가오슝 자창 야시장 다른 가게의 상차림이에요 (해산물죽은 왼쪽 위)"
+  },
+  {
+    "key": "eel",
+    "file": "eel.jpg",
+    "author": "TACO Huang",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Thick_Soup_Noodles_with_Eel_-_鱔魚意麵_(4596353688).jpg",
+    "example": "다른 가게의 장어 이몐 사진이에요"
+  },
+  {
+    "key": "shrimp",
+    "file": "shrimp.jpg",
+    "author": "Tianmu peter",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:蒸的鹽水蝦^很好吃_-_panoramio.jpg",
+    "example": "다른 가게의 소금물 새우찜 사진이에요"
+  },
+  {
+    "key": "crab",
+    "file": "crab.jpg",
+    "author": "Lilblackdog29",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Steamed_crabs.jpg",
+    "example": "다른 곳의 게찜 사진이에요"
+  },
+  {
+    "key": "squid",
+    "file": "squid.jpg",
+    "author": "Jirka Matousek",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Close-up_view_of_grilled_neritic_squid_in_Taipei_after_New_Year%27s_Eve_2015.jpg",
+    "example": "타이베이 노점의 오징어 구이 사진이에요"
+  },
+  {
+    "key": "clams",
+    "file": "clams.jpg",
+    "author": "bryan... from Taipei",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Food_炒海瓜子,_胖子小吃,_八德店,_台北_(21330222508).jpg",
+    "example": "타이베이 가게의 바지락 볶음 사진이에요"
+  },
+  {
+    "key": "fishball",
+    "file": "fishball.jpg",
+    "author": "bryan... from Taipei",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Food_乾麵,_餛飩湯,_魚丸湯,_臘腸,_燒肉,_意麵王,_台北_(15565441103).jpg",
+    "example": "타이베이 가게의 상차림이에요 (어묵탕은 오른쪽)"
+  },
+  {
+    "key": "beefnoodle",
+    "file": "beefnoodle.jpg",
+    "author": "Jpatokal",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Food_BeefNoodleSoup.JPG",
+    "example": "타이베이 스린 야시장의 우육면 사진이에요"
+  },
+  {
+    "key": "duckrice",
+    "file": "duckrice.jpg",
+    "author": "bryan... from Taipei",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Food_當歸鴨腿麵線,_紹興醉鴨,_鴨肉飯,_四號乾麵,_土庫當歸鴨,_台北_(23375244874).jpg",
+    "example": "타이베이 오리고기 가게의 상차림이에요"
+  },
+  {
+    "key": "tuberice",
+    "file": "tuberice.jpg",
+    "author": "bryan... from Taipei",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:筒仔米糕,_何家排骨酥,_台北_(14330790184).jpg",
+    "example": "타이베이 가게의 통찹쌀밥 사진이에요"
+  },
+  {
+    "key": "strawberryice",
+    "file": "strawberryice.jpg",
+    "author": "Hadge",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bing_guan_cau_mei.jpg",
+    "example": "다른 가게의 딸기 빙수 사진이에요"
+  },
+  {
+    "key": "mangoice",
+    "file": "mangoice.jpg",
+    "author": "Cloudyskye",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mango_shaved_ice.jpg",
+    "example": "다른 가게의 망고 빙수 사진이에요"
+  },
+  {
+    "key": "breakfast",
+    "file": "breakfast.jpg",
+    "author": "Yun Huang Yong",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Taipei_breakfast_with_fresh_soymilk_20071023.jpg",
+    "example": "타이베이의 두유·사오빙·요우탸오 아침 사진이에요"
+  },
+  {
+    "key": "hotpot",
+    "file": "hotpot.jpg",
+    "author": "bryan... from Taipei",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Food_現宰牛肉片,_牛總涮牛肉,_台北_(14205531644).jpg",
+    "example": "타이베이 소고기 샤브샤브 가게 사진이에요"
+  },
+  {
+    "key": "lurou",
+    "file": "lurou.jpg",
+    "author": "Hadge",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Luroufan.JPG",
+    "example": "다른 가게의 루러우판 사진이에요"
+  },
+  {
+    "key": "papaya",
+    "file": "papaya.jpg",
+    "author": "Jonashtand",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:202001_A_cup_of_papaya_milk_bought_at_Liouho_Night_Market,_Kaohsiung.jpg",
+    "example": "류허 야시장에서 산 파파야우유 사진이에요. 이 가게 것인지는 확인하지 못했어요"
+  },
+  {
+    "key": "papaya-2",
+    "file": "papaya.jpg",
+    "author": "Jonashtand",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:202001_A_cup_of_papaya_milk_bought_at_Liouho_Night_Market,_Kaohsiung.jpg",
+    "example": null
+  },
+  {
+    "key": "oyster",
+    "file": "oyster.jpg",
+    "author": "Morgan Calliope",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Oyster_omelette_in_Shilin_Night_Market.jpg",
+    "example": "타이베이 스린 야시장의 굴전 사진이에요"
+  },
+  {
+    "key": "mulletroe",
+    "file": "mulletroe.jpg",
+    "author": "Chien Chih-Hung / 總統府",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bottarga_in_Taiwan_2023-01-05.jpg",
+    "example": "신주에서 숭어알을 말리는 모습이에요"
+  },
+  {
+    "key": "sausage",
+    "file": "sausage.jpg",
+    "author": "KAICHEN",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Sheng_Yi_Taiwanese_sausage_with_sticky_rice.jpg",
+    "example": null
+  },
+  {
+    "key": "jipai",
+    "file": "jipai.jpg",
+    "author": "Bahnfrend",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Deep_fried_chicken_breast,_Angel_Chicken_Cutlet_Ruifeng_Store,_2026_(01).jpg",
+    "example": null
+  },
+  {
+    "key": "sweetpotato",
+    "file": "sweetpotato.jpg",
+    "author": "Ianbu",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:地瓜球.jpg",
+    "example": "타이베이에서 산 고구마볼 사진이에요"
+  },
+  {
+    "key": "mochi",
+    "file": "mochi.jpg",
+    "author": "Yuriy kosygin",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Taiwanese_Mochi.jpg",
+    "example": "땅콩가루 찹쌀떡 예시 사진이에요"
+  },
+  {
+    "key": "douhua",
+    "file": "douhua.jpg",
+    "author": "Outlookxp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:花生豆花.jpeg",
+    "example": "땅콩 또우화 예시 사진이에요"
+  },
+  {
+    "key": "stinkytofu",
+    "file": "stinkytofu.jpg",
+    "author": "Meng Weng Wong",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Close-up_of_Taiwanese_stinky_tofu_in_Yingge,_New_Taipei.jpg",
+    "example": "신베이 잉거의 취두부 사진이에요"
+  }
+]
