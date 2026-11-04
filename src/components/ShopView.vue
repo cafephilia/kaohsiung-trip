@@ -9,7 +9,7 @@ import WhiskyList from './WhiskyList.vue'
   <section class="dayhead">
     <div class="overline"><span class="day-no">쇼핑</span><span>기념품 · 편의점 · 대만 술</span></div>
     <h2>사 갈 것과 편의점에서 즐길 것</h2>
-    <p class="note food-lead">마지막 쇼핑은 3일차 투어 뒤 저녁이나 4일차 체크아웃 전이에요. 돌아가는 비행기는 위탁 15kg이라 무거운 건 골라서 사요.</p>
+    <p class="note food-lead">마지막 쇼핑은 일정이 비어 있는 3일차 오후·저녁이나 4일차 체크아웃 전이에요. 돌아가는 비행기는 위탁 15kg이라 무거운 건 골라서 사요.</p>
   </section>
 
   <div class="sec">

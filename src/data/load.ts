@@ -43,7 +43,7 @@ function fill(target: object, value: unknown) {
 
 // docs의 키 → 채울 그릇
 const SLOTS: Record<string, object> = {
-  hotel: trip.HOTEL, stay: trip.STAY, hotelFacts: trip.HOTEL_FACTS,
+  hotel: trip.HOTEL, stay: trip.STAY, hotelFacts: trip.HOTEL_FACTS, options: trip.OPTIONS,
   flights: trip.FLIGHTS, flightIncludes: trip.FLIGHT_INCLUDES, checklist: trip.CHECKLIST,
   baggageSummary: trip.BAGGAGE_SUMMARY, baggage: trip.BAGGAGE,
   fares: trip.FARES, fareNotes: trip.FARE_NOTES, walks: trip.WALKS,

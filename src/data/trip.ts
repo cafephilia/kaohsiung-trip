@@ -1,4 +1,4 @@
-import type { CheckItem, Day, Embassy, Flight, Place, Stay, TipGroup } from '../types'
+import type { CheckItem, Day, Embassy, Flight, Item, Place, Stay, TipGroup } from '../types'
 
 export { FIRST_TRIP_TIPS, PACKING, USEFUL_APPS } from './common'
 
@@ -11,6 +11,8 @@ export const HOTEL_FACTS: [string, string][] = []
 export const FLIGHTS: Flight[] = []
 export const FLIGHT_INCLUDES: string[] = []
 export const DAYS: Day[] = []
+/** 일정에서 뺀 구경거리 (갈만한 곳). t에는 언제 가면 좋은지를 적는다 */
+export const OPTIONS: Item[] = []
 export const CHECKLIST: CheckItem[] = []
 export const BAGGAGE_SUMMARY: string[] = []
 export const BAGGAGE: TipGroup[] = []

@@ -8,6 +8,7 @@ import FoodView from './components/FoodView.vue'
 import NightView from './components/NightView.vue'
 import ShopView from './components/ShopView.vue'
 import InfoView from './components/InfoView.vue'
+import OptionsView from './components/OptionsView.vue'
 import MenuSheet from './components/MenuSheet.vue'
 import PackSheet from './components/PackSheet.vue'
 import BaggageSheet from './components/BaggageSheet.vue'
@@ -17,12 +18,13 @@ const TAB_KEY = 'khh-tab'
 const SECTION_KEY = 'khh-section'
 const today = localDate()
 
-// 정보 탭 안의 내부 탭. 주소 해시는 예전처럼 #info·#food·#night·#shop을 쓴다
+// 정보 탭 안의 내부 탭. 주소 해시는 #info·#food·#night·#shop·#more를 쓴다
 const sections = [
   { id: 'info', label: '정보' },
   { id: 'food', label: '맛집' },
   { id: 'night', label: '야시장' },
   { id: 'shop', label: '쇼핑' },
+  { id: 'more', label: '갈만한 곳' },
 ]
 const isSection = (id: string | null): id is string => !!id && sections.some(s => s.id === id)
 
@@ -126,7 +128,7 @@ onBeforeUnmount(() => {
         <span>2026.12.10 – 12.13 · 2명</span>
       </div>
       <h1>가오슝</h1>
-      <p class="hero-sub">항구 도시에서 해산물과 야시장, 3박 4일</p>
+      <p class="hero-sub">맛있는 거 먹으면서 어슬렁, 3박 4일</p>
       <div class="hero-flights">
         <div v-for="f in FLIGHTS" :key="f.code" class="hero-flight">
           <span class="hf-code">{{ f.code }}</span>
@@ -170,6 +172,7 @@ onBeforeUnmount(() => {
         <FoodView v-if="active === 'food'" />
         <NightView v-else-if="active === 'night'" />
         <ShopView v-else-if="active === 'shop'" />
+        <OptionsView v-else-if="active === 'more'" />
         <InfoView v-else />
       </template>
     </main>
